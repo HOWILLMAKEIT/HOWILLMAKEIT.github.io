@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>数据结构(更新中) | HOWILL'S WORLD</title><meta name="author" content="HOWILL"><meta name="copyright" content="HOWILL"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据结构教程：油管搜索：”[my code](https:&#x2F;&#x2F;search.bilibili.com&#x2F;all?from_source&#x3D;webcommentline_search&amp;keyword&#x3D;my code&amp;seid&#x3D;11684695887988959764) school” 什么是数据结构为什么要学习数据结构？ 为了设计开发高效的软件系统 数据结构定义： a data">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构(更新中)">
+<meta property="og:url" content="https://howillmakeit.github.io/2024/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="HOWILL&#39;S WORLD">
+<meta property="og:description" content="数据结构教程：油管搜索：”[my code](https:&#x2F;&#x2F;search.bilibili.com&#x2F;all?from_source&#x3D;webcommentline_search&amp;keyword&#x3D;my code&amp;seid&#x3D;11684695887988959764) school” 什么是数据结构为什么要学习数据结构？ 为了设计开发高效的软件系统 数据结构定义： a data">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://howillmakeit.github.io/img/434052135_1607214906781670_1513540648802057013_n.jpg">
+<meta property="article:published_time" content="2024-07-09T03:16:06.000Z">
+<meta property="article:modified_time" content="2024-07-09T03:19:37.663Z">
+<meta property="article:author" content="HOWILL">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://howillmakeit.github.io/img/434052135_1607214906781670_1513540648802057013_n.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://howillmakeit.github.io/2024/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数据结构(更新中)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-09 11:19:37'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/434052135_1607214906781670_1513540648802057013_n.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/background.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="HOWILL'S WORLD"><span class="site-name">HOWILL'S WORLD</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-paper-plane"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数据结构(更新中)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-09T03:16:06.000Z" title="发表于 2024-07-09 11:16:06">2024-07-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-09T03:19:37.663Z" title="更新于 2024-07-09 11:19:37">2024-07-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数据结构(更新中)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>教程：油管搜索：”[my code](<a target="_blank" rel="noopener" href="https://search.bilibili.com/all?from_source=webcommentline_search&keyword=my">https://search.bilibili.com/all?from_source=webcommentline_search&amp;keyword=my</a> code&amp;seid&#x3D;11684695887988959764) school”</p>
+<h2 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a>什么是数据结构</h2><p>为什么要学习数据结构？</p>
+<p>为了设计开发高效的软件系统</p>
+<p>数据结构定义：</p>
+<p>a data structure is a way to store and organize data in a computer, </p>
+<p>so that it can be used efficiently.</p>
+<p>我们常说的“数据结构”其实分为两种概念：</p>
+<p>1)ADT:  abstract data types –定义我们想要实现的功能，不讨论实现细节</p>
+<p>2)Implementation（实现）–设计程序实现功能</p>
+<h2 id="链表linked-list"><a href="#链表linked-list" class="headerlink" title="链表linked list"></a>链表linked list</h2><h3 id="为什么需要链表？"><a href="#为什么需要链表？" class="headerlink" title="为什么需要链表？"></a>为什么需要链表？</h3><p>在使用数组申请内存空间的时候，数组的大小往往是限定好的，例如: int A[4];这样就申请了4*4&#x3D;16个字节的空间</p>
+<p>当你想要插入第五个元素的时候，由于这块空间附近的空间可能已经被内存管理器分配给了其他变量，这导致数组不具有扩展性。</p>
+<p>想要扩展，只能重新创建一个数组，然后把原来的数据复制进去，由于需要遍历所有元素，因此时间复杂度为O(n)，空间复杂度也为O(n)</p>
+<p>因此，我们需要一个<strong>更具有扩展性的数据结构</strong>——<strong>链表</strong></p>
+<h3 id="链表的扩展性"><a href="#链表的扩展性" class="headerlink" title="链表的扩展性"></a>链表的扩展性</h3><p><img src="/2024/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20240709104317964.png" alt="image-20240709104317964"></p>
+<p> 数组的特点是申请一整块连续的内存块</p>
+<p>而链表可扩展性的秘诀在于为每一个数据申请单独的内存块（分散）</p>
+<p>对于数组，我们可以通过内存块的首地址+数组的位置计算出某一元素所在的位置，例如数组A的首地址为200，那么A[4]就是200+4*4&#x3D;216</p>
+<p>但是对于链表，由于内存块是分散的，如何找到对应的地址就是一个新的问题</p>
+<p>解决方案是，在一个块中，既存放数据，又存放下一个元素（内存块）的地址</p>
+<p>也就是说一个内存块存放两个变量，一个是<u>特定类型的元素</u>，另一个是<u>下一个元素的数据类型对应的指针</u></p>
+<p><img src="/2024/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20240709104501024.png" alt="image-20240709104501024"></p>
+<h3 id="节点-node"><a href="#节点-node" class="headerlink" title="节点-node"></a>节点-node</h3><p>把每一个内存块（包括元素和指针）看成一个整体，这样的整体称为：node &#x2F;&#x2F;节点</p>
+<p>在C&#x2F;C++中，用结构体<strong>struct</strong>定义这样一个节点</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="type">int</span> data; <span class="comment">// 存储数据  4字节</span></span><br><span class="line">    Node* next; <span class="comment">// 指向下一个节点的指针  4字节</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>注意这里的指针类型为 Node* ，表明这里存放的是下一个节点的地址</p>
+<p><img src="/2024/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/image-20240709110040745.png" alt="image-20240709110040745"></p>
+<h3 id="数组与链表"><a href="#数组与链表" class="headerlink" title="数组与链表"></a>数组与链表</h3><h4 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h4><p>访问元素的方式，数组可以通过计算元素的地址直接访问该元素，时间复杂度O(1)</p>
+<p>但是链表必须从头开始，访问每一个元素，直到访问到目标,时间复杂度O(n)</p>
+<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p>数组无法直接插入元素，只能重新创建一个数组，时间复杂度O(n)</p>
+<p>链表需要创建一个新的node，然后改变前一个node的指针，时间复杂度为时间复杂度O(n)</p>
+<p>但是，重新创建一个数组的<u>空间复杂度是O(n)</u></p>
+<p>而在链表中，只需要新建一个节点，<u>空间复杂度是O(1)</u></p>
+<p>而且链表的操作更加简单</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://howillmakeit.github.io">HOWILL</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://howillmakeit.github.io/2024/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">https://howillmakeit.github.io/2024/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://howillmakeit.github.io" target="_blank">HOWILL'S WORLD</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div><div class="post_share"><div class="social-share" data-image="/img/434052135_1607214906781670_1513540648802057013_n.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/06/17/%E4%B9%8C%E8%90%A8%E5%A5%87%E9%80%9A%E8%AE%AF%E5%BD%95%E9%A1%B9%E7%9B%AE%E6%8A%A5%E5%91%8A-1/" title="乌萨奇通讯录项目报告"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">乌萨奇通讯录项目报告</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/434052135_1607214906781670_1513540648802057013_n.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HOWILL</div><div class="author-info__description">just a blog </div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/HOWILLMAKEIT"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HOWILLMAKEIT" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">什么是数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8linked-list"><span class="toc-number">1.2.</span> <span class="toc-text">链表linked list</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E9%93%BE%E8%A1%A8%EF%BC%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">为什么需要链表？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-number">1.2.2.</span> <span class="toc-text">链表的扩展性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E7%82%B9-node"><span class="toc-number">1.2.3.</span> <span class="toc-text">节点-node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E4%B8%8E%E9%93%BE%E8%A1%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">数组与链表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%85%83%E7%B4%A0"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">访问元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">插入</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构(更新中)">数据结构(更新中)</a><time datetime="2024-07-09T03:16:06.000Z" title="发表于 2024-07-09 11:16:06">2024-07-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/17/%E4%B9%8C%E8%90%A8%E5%A5%87%E9%80%9A%E8%AE%AF%E5%BD%95%E9%A1%B9%E7%9B%AE%E6%8A%A5%E5%91%8A-1/" title="乌萨奇通讯录项目报告">乌萨奇通讯录项目报告</a><time datetime="2024-06-17T03:22:06.000Z" title="发表于 2024-06-17 11:22:06">2024-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/13/hello-world-1/" title="HELLO WORLD">HELLO WORLD</a><time datetime="2024-06-13T06:35:22.000Z" title="发表于 2024-06-13 14:35:22">2024-06-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By HOWILL</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'hTBg743qGPvcDLWFJT7BFooo-gzGzoHsz',
+      appKey: 'ChcUQ7xit2zqaqHtFQ468Gnu',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
