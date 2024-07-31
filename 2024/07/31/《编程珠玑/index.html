@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>《编程珠玑》阅读与思考 | HOWILL'S WORLD</title><meta name="author" content="HOWILL"><meta name="copyright" content="HOWILL"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第一章问题分析一个最多包含n个正整数的磁盘文件，每个数都小于n，其中n&#x3D;10^7，文件中不包含重复的数。要求输出按升序排列的输入整数的列表。 Note：最多有（大约）1MB的内存可用，有充足的磁盘空间可用。 如果按照int类型存储这些数值，1mb可以储存250000个号码，也就是说如果你重复读入40次数据，每次都使用快排算法，就可以解决此问题 但是 考虑到该问题的特殊性，每个数都小于10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《编程珠玑》阅读与思考">
+<meta property="og:url" content="https://howillmakeit.github.io/2024/07/31/%E3%80%8A%E7%BC%96%E7%A8%8B%E7%8F%A0%E7%8E%91/index.html">
+<meta property="og:site_name" content="HOWILL&#39;S WORLD">
+<meta property="og:description" content="第一章问题分析一个最多包含n个正整数的磁盘文件，每个数都小于n，其中n&#x3D;10^7，文件中不包含重复的数。要求输出按升序排列的输入整数的列表。 Note：最多有（大约）1MB的内存可用，有充足的磁盘空间可用。 如果按照int类型存储这些数值，1mb可以储存250000个号码，也就是说如果你重复读入40次数据，每次都使用快排算法，就可以解决此问题 但是 考虑到该问题的特殊性，每个数都小于10">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://howillmakeit.github.io/img/434052135_1607214906781670_1513540648802057013_n.jpg">
+<meta property="article:published_time" content="2024-07-31T11:30:41.000Z">
+<meta property="article:modified_time" content="2024-07-31T13:30:27.505Z">
+<meta property="article:author" content="HOWILL">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://howillmakeit.github.io/img/434052135_1607214906781670_1513540648802057013_n.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://howillmakeit.github.io/2024/07/31/%E3%80%8A%E7%BC%96%E7%A8%8B%E7%8F%A0%E7%8E%91/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '《编程珠玑》阅读与思考',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-31 21:30:27'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/434052135_1607214906781670_1513540648802057013_n.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/background.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="HOWILL'S WORLD"><span class="site-name">HOWILL'S WORLD</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-paper-plane"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">《编程珠玑》阅读与思考</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-31T11:30:41.000Z" title="发表于 2024-07-31 19:30:41">2024-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-31T13:30:27.505Z" title="更新于 2024-07-31 21:30:27">2024-07-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="《编程珠玑》阅读与思考"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>一个最多包含n个正整数的磁盘文件，每个数都小于n，其中n&#x3D;10^7，文件中不包含重复的数。要求输出按升序排列的输入整数的列表。 Note：最多有（大约）1MB的内存可用，有充足的磁盘空间可用。</p>
+<p>如果按照int类型存储这些数值，1mb可以储存250000个号码，也就是说如果你重复读入40次数据，每次都使用快排算法，就可以解决此问题</p>
+<p>但是</p>
+<p>考虑到该问题的特殊性，每个数都小于10^7，且不能重复。很显然能用一个包含10 000 000个位的向量来表示所有小于10^7的正整数，出现过的数即把相应的位置1，没出现过的数即置0，这样就大大降低了程序运行时间。这种方法简而言之就是：用<strong>位图或位向量表示集合</strong>。</p>
+<p>1MB最多能表示1024<em>1024</em>8约为8 000 000个位，但是这里最多包含10 000 000个元素（即使用10 000 000个位），也就是说1mb在这里还是不够用，</p>
+<p>这里我们先假设有充足内存的情况</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> BITSPERWORD 32</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SHIFT 5</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MASK 0x1F</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 10000000 <span class="comment">//数据个数</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a[<span class="number">1</span> + N / BITSPERWORD]; <span class="comment">//位向量</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">set</span><span class="params">(<span class="type">int</span> i)</span> &#123;   <span class="comment">//设置出现过的数，置1</span></span><br><span class="line">    a[i &gt;&gt; SHIFT] |= (<span class="number">1</span> &lt;&lt; (i &amp; MASK));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">clr</span><span class="params">(<span class="type">int</span> i)</span> &#123;   <span class="comment">//清除，将每一位置0</span></span><br><span class="line">    a[i &gt;&gt; SHIFT] &amp;= ~(<span class="number">1</span> &lt;&lt; (i &amp; MASK));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">test</span><span class="params">(<span class="type">int</span> i)</span> &#123;   <span class="comment">//检验某一位是否为1</span></span><br><span class="line">    <span class="keyword">return</span> a[i &gt;&gt; SHIFT] &amp; (<span class="number">1</span> &lt;&lt; (i &amp; MASK));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        clr(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;i) != EOF) &#123;</span><br><span class="line">        <span class="built_in">set</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (test(i)) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码解读："><a href="#代码解读：" class="headerlink" title="代码解读："></a>代码解读：</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#define BITSPERWORD 32</span><br></pre></td></tr></table></figure>
+
+<p>我们用int型数组存储数据</p>
+<p>一个int数据是4个字节byte，也就是32个位</p>
+<p>一个位对应一个数据</p>
+<p>用N &#x2F; BITSPERWORD就得到了需要的int数</p>
+<p>不过N&#x2F;BITSPERWORD不一定是整数，所以+1以防万一</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a[i &gt;&gt; SHIFT] |= (1 &lt;&lt; (i &amp; MASK))</span><br></pre></td></tr></table></figure>
+
+<p>首先理解i&gt;&gt;SHIFT，即i&gt;&gt;5,即i&#x2F;2^5，例如i是999，其应该被保存在第999位，我们需要先找到其在存储在数组上的哪一个int中，999&#x2F;32 &#x3D;31，也就是说其在第32个int中，别忘了数组的索引从0开始</p>
+<p>也就是说我们要找的这个位在 a[31]中</p>
+<p>ps：特殊情况 i&#x3D;0，0确实可以作为一个数据，也就是说这里的位数是从第0位开始定义的，32对应的位存储在a[1]中</p>
+<p>接着理解i &amp; MASK，<code>MASK</code> 的值为0x1F（即31），它的二进制表示是 <code>00011111</code>。当 <code>i &amp; MASK</code> 进行运算时，它会将 <code>i</code> 的低5位保留，而将其他位都置为0。</p>
+<p><u>也就是说 i &amp; MASK 其实相当于 i%32</u> </p>
+<p>例如999 &amp; MASK &#x3D;&#x3D; 7，也就是说999处于a[31]这个数据的32位中的第7位（<strong>从第0位开始</strong>）</p>
+<p>那么 1&lt;&lt;7表示将1的二进制左移7位，即将第7位赋值为了1</p>
+<p>最后，a[31] |&#x3D; 1&lt;&lt;7，即： </p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[<span class="number">31</span>] = a[<span class="number">31</span>] | <span class="number">1</span>&lt;&lt;<span class="number">7</span> <span class="comment">// | 表示按位或</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i &gt;&gt; SHIFT] &amp;= ~(<span class="number">1</span> &lt;&lt; (i &amp; MASK))</span><br><span class="line">    <span class="comment">// &amp; 表示按位或</span></span><br></pre></td></tr></table></figure>
+
+<p>在理解了set 函数的代码后，clr函数也十分好理解</p>
+<p>同样以999为例，对 1&lt;&lt;7取反，那么就只有第7位为0，其他位为 1，再进行按位与，表示其他位不受影响，只将第7位赋值为0</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> a[i &gt;&gt; SHIFT] &amp; (<span class="number">1</span> &lt;&lt; (i &amp; MASK));</span><br></pre></td></tr></table></figure>
+
+<p>这个test函数也比较好理解，这里不重复解释了</p>
+<h3 id="数据结构知识"><a href="#数据结构知识" class="headerlink" title="数据结构知识"></a>数据结构知识</h3><p><strong>位图数据结构</strong>。该数据结构描述了一个有限定义域内的稠密集合，其中的每一个元素最多出现一次并且没有任何数据结构与该元素相关联。即使这些条件没有完全满足（例如，存在重复元素或额外的数据），也可以用有限定义域内的键作为一个表项或者更复杂的表格的索引。正确理解该数据结构以及学会如何使用、在什么场合使用，如此方能得心应手。</p>
+<h3 id="习题解答"><a href="#习题解答" class="headerlink" title="习题解答"></a>习题解答</h3><p><strong>第五题</strong><br>  那个程序员说他又1MB的可用存储空间，但是我们概要描述的代码需要1.25MB的空间。他可用不费力气的索取到额外的空间。如果1MB空间是严格的边界，你会推荐如何处理呢？</p>
+<p> 可用多<strong>路归并排序</strong>进行解决。</p>
+<p> 例如：我们可以将输入文件分成两个部分，第一部分保存[1,5000000]之间的数，第二个文件保存[5000001,10000000]的数字，然后分别进行排序，</p>
+<p><strong>第六题</strong><br>  如果那个程序员说的不是每个整数最多出现一次，而是每个整数最多出现10次，你又如何建议他呢？你的解决方案如何随着可用存储空间总量的变化而变化呢？</p>
+<p>可以用四个位存储一个整数出现的次数，这样需要的内存是原来的四倍，结合第五题解决方案即可</p>
+<p><strong>第九题</strong></p>
+<p>使用更多的空间来换取更少的运行时间存在一个问题：初始化空间本身需要消耗大量的时间。说明如何设计一种技术，在第一次访问向量的项时将其初始化为0.你的方案应该使用常量时间进行初始化和向量访问，使用的额外空间应正比于向量的大小。因为该方法通过进一步增加空间来减少初始化的时间，所以仅在空间很廉价，时间很宝贵且向量很稀疏的情况下才考虑使用。</p>
+<p><u>而这个题目的想法就是我们可不可以申请空间之后不用进行初始化操作，申请的空间就随它是随机值好了。后面我真正访问的时候再初始化，并且我第二次访问的时候我有办法知道它是不是已经被访问过。</u></p>
+<p>例如我们需要将数据存放在data[]中，但是我们并不想对所有数据都进行初始化</p>
+<p>当我们设定data[i] &#x3D; 0;的时候，data的第i位就被访问过了，很自然的，我们可以用一个新的向量存放我们已经访问过的位置索引,即:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">to[top] = i <span class="comment">// top初始化为0</span></span><br></pre></td></tr></table></figure>
+
+<p>但是，每次在to数组中查找是否有i也需要大量时间，我们需要另一个数组存放 i在to数组中的索引</p>
+<p>即：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">from[i] = top;</span><br><span class="line">top ++;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/07/31/%E3%80%8A%E7%BC%96%E7%A8%8B%E7%8F%A0%E7%8E%91/image-20240731212923736.png" alt="image-20240731212923736"></p>
+<p>这个算法的精妙之处在于只需要i，就可以得到to[from[i]]的数值，进而判断是否已经访问过位置i</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 判断是否已经访问过</span></span><br><span class="line">from[i] &lt; top &amp;&amp; to[from[i]] == i</span><br></pre></td></tr></table></figure>
+
+<p>如果from[i]是一个随机数 ， to[from[i]]还是有极小的概率等于i，所以需要from[i] &lt; top  条件</p>
+<p>而from[i] 即便是一个随机数，也是有可能小于top的，也就是说这两个条件缺一不可，而to[from[i]]则是主要的判定条件</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://howillmakeit.github.io">HOWILL</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://howillmakeit.github.io/2024/07/31/%E3%80%8A%E7%BC%96%E7%A8%8B%E7%8F%A0%E7%8E%91/">https://howillmakeit.github.io/2024/07/31/%E3%80%8A%E7%BC%96%E7%A8%8B%E7%8F%A0%E7%8E%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://howillmakeit.github.io" target="_blank">HOWILL'S WORLD</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><div class="post_share"><div class="social-share" data-image="/img/434052135_1607214906781670_1513540648802057013_n.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/07/26/leetcode%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/" title="leetcode刷题日记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">leetcode刷题日记</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/434052135_1607214906781670_1513540648802057013_n.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HOWILL</div><div class="author-info__description">just a blog </div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/HOWILLMAKEIT"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/HOWILLMAKEIT" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.2.</span> <span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">代码解读：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9F%A5%E8%AF%86"><span class="toc-number">1.4.</span> <span class="toc-text">数据结构知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98%E8%A7%A3%E7%AD%94"><span class="toc-number">1.5.</span> <span class="toc-text">习题解答</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/31/%E3%80%8A%E7%BC%96%E7%A8%8B%E7%8F%A0%E7%8E%91/" title="《编程珠玑》阅读与思考">《编程珠玑》阅读与思考</a><time datetime="2024-07-31T11:30:41.000Z" title="发表于 2024-07-31 19:30:41">2024-07-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/26/leetcode%E5%88%B7%E9%A2%98%E6%97%A5%E8%AE%B0/" title="leetcode刷题日记">leetcode刷题日记</a><time datetime="2024-07-26T05:17:17.000Z" title="发表于 2024-07-26 13:17:17">2024-07-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/25/%E5%8A%A8%E6%89%8B%E5%AD%A6%E4%B9%A0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" title="动手学习深度学习">动手学习深度学习</a><time datetime="2024-07-25T05:47:20.000Z" title="发表于 2024-07-25 13:47:20">2024-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/25/python/" title="python学习记录">python学习记录</a><time datetime="2024-07-25T01:55:20.000Z" title="发表于 2024-07-25 09:55:20">2024-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构（更新完毕）">数据结构（更新完毕）</a><time datetime="2024-07-09T03:16:06.000Z" title="发表于 2024-07-09 11:16:06">2024-07-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By HOWILL</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'hTBg743qGPvcDLWFJT7BFooo-gzGzoHsz',
+      appKey: 'ChcUQ7xit2zqaqHtFQ468Gnu',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
