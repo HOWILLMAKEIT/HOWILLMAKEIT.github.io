@@ -1,0 +1,17 @@
+{{- /*
+  KaTeX 数学公式支持 —— 非侵入式覆盖主题同名钩子，升级主题不受影响。
+  用法：在文章 front matter 设置  math = true  即自动加载。
+  用的是 jsDelivr CDN；若国内访问慢，可换成 bootcdn/staticfile 或自托管到 assets/。
+*/ -}}
+{{- if .Params.math -}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    crossorigin="anonymous"
+    onload="renderMathInElement(document.body,{delimiters:[
+      {left:'$$',right:'$$',display:true},
+      {left:'$',right:'$',display:false},
+      {left:'\\(',right:'\\)',display:false},
+      {left:'\\[',right:'\\]',display:true}
+    ],throwOnError:false});"></script>
+{{- end -}}

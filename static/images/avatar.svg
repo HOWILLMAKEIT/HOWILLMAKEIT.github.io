@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6a8dff"/>
+      <stop offset="1" stop-color="#a26bff"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#g)"/>
+  <text x="100" y="120" font-family="-apple-system, 'PingFang SC', Helvetica, Arial, sans-serif"
+        font-size="84" font-weight="600" fill="#ffffff" text-anchor="middle">你</text>
+</svg>

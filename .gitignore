@@ -1,0 +1,14 @@
+# Hugo 生成的产物
+/public/
+/resources/_gen/
+
+# 依赖
+.hugo_build.lock
+
+# 系统/编辑器
+.DS_Store
+.vscode/
+.idea/
+
+# 首页使用 static/images/profile.jpg 中的网页优化版本
+/个人照片.jpg

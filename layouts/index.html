@@ -1,0 +1,138 @@
+{{- define "main" }}
+<div class="about-home">
+  <section class="about-hero" aria-labelledby="about-title">
+    <p class="hero-eyebrow">ABOUT ME</p>
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <h1 id="about-title">郭昊 <span>/ Hao Guo</span></h1>
+        <p class="hero-lead">
+          华南理工大学计算机科学与工程学院学生，研究强化学习、进化计算与黑盒优化，
+          同时关注大模型训练、Agent 与 RAG 系统的工程实践。
+        </p>
+        <ul class="research-focus" aria-label="研究方向">
+          <li>强化学习</li>
+          <li>智能优化</li>
+          <li>LLM & Agent</li>
+        </ul>
+        <div class="hero-actions" aria-label="联系方式">
+          <a href="mailto:1450656923@qq.com">Email</a>
+          <a href="https://github.com/HOWILLMAKEIT" target="_blank" rel="noopener">GitHub</a>
+          <a href="/posts/">Blog</a>
+        </div>
+      </div>
+      <figure class="profile-photo">
+        <img src="/images/profile.jpg" alt="郭昊在雪山旅行时的个人照片" width="900" height="1200" fetchpriority="high">
+      </figure>
+    </div>
+  </section>
+
+  <section class="timeline-section" aria-labelledby="education-title">
+    <header class="section-heading">
+      <div>
+        <p class="section-kicker">EDUCATION</p>
+        <h2 id="education-title">教育经历</h2>
+      </div>
+      <p>华南理工大学计算机科学与工程学院。</p>
+    </header>
+
+    <ol class="timeline">
+      <li class="timeline-item future">
+        <div class="timeline-date">2027.09 — 2030.06</div>
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <article class="timeline-content">
+          <div class="timeline-meta"><span>EDUCATION</span><span>UPCOMING</span></div>
+          <h3>华南理工大学 · 计算机科学硕士</h3>
+          <p>将在计算机科学与工程学院继续攻读硕士学位，延续强化学习与智能优化方向的研究。</p>
+        </article>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-date">2023.09 — 2027.06</div>
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <article class="timeline-content">
+          <div class="timeline-meta"><span>EDUCATION</span></div>
+          <h3>华南理工大学 · 网络工程本科</h3>
+          <p>GPA 3.87，专业排名 2/68；连续两学年获得国家奖学金，并逐步将学习重心转向 AI 算法研究。</p>
+        </article>
+      </li>
+    </ol>
+  </section>
+
+  <section class="timeline-section experience-section" aria-labelledby="experience-title">
+    <header class="section-heading">
+      <div>
+        <p class="section-kicker">RESEARCH · INDUSTRY</p>
+        <h2 id="experience-title">科研与实习经历</h2>
+      </div>
+      <p>从算法研究到真实业务系统，持续学习，也持续构建。</p>
+    </header>
+
+    <ol class="timeline">
+
+      <li class="timeline-item">
+        <div class="timeline-date">2026.04 — 2026.06</div>
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <article class="timeline-content">
+          <div class="timeline-meta"><span>INDUSTRY</span></div>
+          <h3>广州骑士集团 · AI 算法工程师</h3>
+          <p>参与幸棉电商 AI 客服系统，推进 Agent 新链路、模型评测与商品推荐算法在真实业务中的落地。</p>
+        </article>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-date">2025.12 — 至今</div>
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <article class="timeline-content">
+          <div class="timeline-meta"><span>RESEARCH</span><span>FIRST AUTHOR</span></div>
+          <h3>LDO · 长时序多头 PPO 优化智能体</h3>
+          <p>将变量分解、资源分配与优化模式切换建模为长时序决策问题；论文投稿 IEEE TEVC，Under Review。</p>
+        </article>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-date">2025.08 — 2026.01</div>
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <article class="timeline-content">
+          <div class="timeline-meta"><span>RESEARCH</span><span>GECCO 2026 ORAL</span></div>
+          <h3>LCC · 基于 PPO 的自适应策略调度</h3>
+          <p>使用强化学习替代人工规则选择分解策略，验证对未见优化问题的跨任务泛化；论文第二作者。</p>
+        </article>
+      </li>
+
+      <li class="timeline-item">
+        <div class="timeline-date">2025.08 — 至今</div>
+        <div class="timeline-marker" aria-hidden="true"></div>
+        <article class="timeline-content">
+          <div class="timeline-meta"><span>OPEN SOURCE</span><span>NEURIPS 2025</span></div>
+          <h3>MetaBox-v2 · MetaBBO 研究与评测平台</h3>
+          <p>参与 PPO/RLDAS 基线与自动评测平台开发，支持强化学习优化器的并行训练和跨场景比较。</p>
+        </article>
+      </li>
+    </ol>
+  </section>
+
+  <section class="interests-section" aria-labelledby="interests-title">
+    <div>
+      <p class="section-kicker">BEYOND RESEARCH</p>
+      <h2 id="interests-title">兴趣爱好</h2>
+    </div>
+    <p>工作与研究之外，我喜欢足球、旅行、攀岩，也享受游戏、美剧和音乐。</p>
+    <ul aria-label="兴趣爱好列表">
+      <li>足球</li>
+      <li>旅行</li>
+      <li>攀岩</li>
+      <li>游戏</li>
+      <li>美剧</li>
+      <li>音乐</li>
+    </ul>
+  </section>
+
+  <section class="home-cta" aria-label="博客入口">
+    <div>
+      <p>NOTES & WRITING</p>
+      <h2>研究之外，我也记录学习过程。</h2>
+    </div>
+    <a href="/posts/">浏览全部文章 <span>→</span></a>
+  </section>
+</div>
+{{- end }}

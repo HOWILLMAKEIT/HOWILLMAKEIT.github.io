@@ -1,0 +1,134 @@
+# =============================================================
+# Hugo 站点配置 —— 基于 lilianweng.github.io 同款 PaperMod 主题
+# 带有「TODO」或「你的…」的地方，替换成你自己的信息即可。
+# 完整参数文档: https://adityatelange.github.io/hugo-PaperMod/
+# =============================================================
+
+# ---------- 基础信息 ----------
+baseURL = "https://howillmakeit.github.io/"
+locale = "zh-cn"
+timeZone = "Asia/Shanghai"                 # 日期按本时区解析，避免「今天」的文章被当成未来时间而不显示
+title = "郭昊 · Hao Guo"
+theme = "PaperMod"
+defaultContentLanguage = "zh"
+
+# ---------- 生成选项 ----------
+enableRobotsTXT = true
+enableEmoji = true
+buildDrafts = false
+buildFuture = false
+disableKinds = ["taxonomy", "term"]
+
+[pagination]
+  pagerSize = 10                            # 列表每页文章数
+
+[caches]
+  [caches.images]
+    dir = ":cacheDir/images"
+
+# ---------- 输出格式：开启 JSON 才能用站内搜索 ----------
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# =============================================================
+# 主题参数 (PaperMod)
+# =============================================================
+[params]
+  env = "production"
+  defaultTheme = "auto"          # auto 跟随系统 / light / dark
+  disableThemeToggle = false     # 右上角明暗切换按钮
+  ShowReadingTime = true         # 阅读时长
+  ShowWordCount = true           # 字数
+  ShowBreadCrumbs = true         # 面包屑
+  ShowPostNavLinks = true        # 上一篇 / 下一篇
+  ShowCodeCopyButtons = true     # 代码块复制按钮
+  ShowToc = true                 # 文章目录
+  TocOpen = false                # 目录默认展开
+  ShowShareButtons = false       # 分享按钮
+  hideMeta = false
+  hideSummary = false
+  useHugoToc = true
+
+  description = "郭昊的个人主页：强化学习、智能优化、大模型与 Agent。"
+  author = "郭昊"
+  DateFormat = "2006-01-02"
+
+  # 页头 Logo 文字
+  [params.label]
+    text = "Hao Guo"
+    iconHeight = 28
+    # icon = "/images/avatar.svg"  # 想用图片 logo 取消注释
+
+  # ---------- 首页方案 A：homeInfoParams（左对齐，与 lilianweng 一致，无需图片）----------
+  # 这是当前启用的样式。
+  # ---------- 首页方案 B：profileMode（居中头像 + 简介）----------
+  # 想用这个？把上面 [params.homeInfoParams] 整段删掉/注释，再取消下面注释。
+  # 占位头像已放在 static/images/avatar.svg。
+  # [params.profileMode]
+  #   enabled = true
+  #   title = "你的名字"
+  #   subtitle = "一句话简介：研究员 / 工程师 / 学生"
+  #   imageUrl = "/images/avatar.svg"
+  #   imageWidth = 200
+  #   imageHeight = 200
+  #   imageTitle = "avatar"
+
+  # ---------- 社交链接图标（两个方案都会显示）----------
+  # 可用图标名见主题 svg.html，常用: github email linkedin twitter x rss telegram ...
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/HOWILLMAKEIT"
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:1450656923@qq.com"
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+  # ---------- 资源 ----------
+  [params.assets]
+    favicon = "/favicon.ico"
+    # disableHLJS = true   # 如需自定义高亮可打开
+
+# =============================================================
+# 顶部导航菜单
+# =============================================================
+[[menu.main]]
+  identifier = "about"
+  name = "关于我"
+  url = "/"
+  weight = 5
+[[menu.main]]
+  identifier = "posts"
+  name = "文章"
+  url = "/posts/"
+  weight = 10
+[[menu.main]]
+  identifier = "archives"
+  name = "归档"
+  url = "/archives/"
+  weight = 20
+[[menu.main]]
+  identifier = "search"
+  name = "搜索"
+  url = "/search/"
+  weight = 30
+
+# =============================================================
+# Markdown 渲染（PaperMod 官方推荐高亮配置）
+# =============================================================
+[markup]
+  [markup.highlight]
+    anchorLineNos = true
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    noClasses = true
+    style = "monokai"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true          # 允许在 Markdown 里直接写 HTML
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false
