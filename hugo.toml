@@ -87,7 +87,11 @@ disableKinds = ["taxonomy", "term"]
 
   # ---------- 资源 ----------
   [params.assets]
-    favicon = "/favicon.ico"
+    favicon = "/favicon.svg"
+    favicon16x16 = "/favicon.svg"
+    favicon32x32 = "/favicon.svg"
+    apple_touch_icon = "/favicon.svg"
+    safari_pinned_tab = "/favicon.svg"
     # disableHLJS = true   # 如需自定义高亮可打开
 
 # =============================================================
