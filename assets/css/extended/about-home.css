@@ -116,7 +116,7 @@
 .profile-photo {
   position: relative;
   width: 210px;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   margin: 0;
   overflow: hidden;
   background: var(--accent-soft);
@@ -132,12 +132,10 @@
 }
 
 .profile-photo img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 68% 66%;
-  transform: scale(1.22);
-  filter: saturate(0.88) contrast(1.02);
+  object-fit: contain;
 }
 
 .timeline-section {
