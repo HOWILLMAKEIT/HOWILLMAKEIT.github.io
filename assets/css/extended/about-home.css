@@ -322,7 +322,8 @@
   background: #fff;
 }
 
-.paper-visual > span {
+.paper-visual > span,
+.paper-visual > figcaption {
   display: flex;
   justify-content: space-between;
   gap: 16px;
@@ -356,6 +357,25 @@
 
 .project-visual b {
   color: #3578b8;
+}
+
+.industry-visual {
+  margin: 0;
+  box-shadow: 8px 8px 0 color-mix(in srgb, #b98363 12%, var(--theme));
+}
+
+.industry-visual img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+.industry-visual b {
+  color: #9a6348;
+}
+
+[data-theme="dark"] .industry-visual b {
+  color: #d6a58a;
 }
 
 .interests-section {
