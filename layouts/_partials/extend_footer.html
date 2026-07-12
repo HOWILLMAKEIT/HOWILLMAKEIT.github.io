@@ -89,3 +89,29 @@
 </script>
 {{- end -}}
 
+{{- if .IsHome -}}
+<script>
+(() => {
+  const widget = document.querySelector('[data-support-widget]');
+  if (!widget) return;
+
+  const button = widget.querySelector('.support-button');
+  const likedKey = 'howillmakeit.blog.support.liked';
+
+  const render = (liked) => {
+    button.setAttribute('aria-pressed', String(liked));
+    button.setAttribute('aria-label', liked ? '取消为博客点赞' : '为博客点赞');
+  };
+
+  let liked = localStorage.getItem(likedKey) === 'true';
+  render(liked);
+
+  button.addEventListener('click', () => {
+    liked = !liked;
+    localStorage.setItem(likedKey, String(liked));
+    render(liked);
+
+  });
+})();
+</script>
+{{- end -}}
