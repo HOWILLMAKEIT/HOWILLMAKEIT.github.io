@@ -360,8 +360,13 @@
 }
 
 .industry-visual {
-  margin: 0;
+  width: min(100%, 320px);
+  justify-self: end;
   box-shadow: 8px 8px 0 color-mix(in srgb, #b98363 12%, var(--theme));
+}
+
+.industry-entry {
+  grid-template-columns: minmax(330px, 1fr) minmax(240px, 320px);
 }
 
 .industry-visual img {
@@ -481,6 +486,7 @@
 @media (max-width: 900px) {
   .paper-entry { grid-template-columns: 1fr; gap: 24px; }
   .paper-visual { max-width: 680px; }
+  .industry-visual { justify-self: start; }
 }
 
 @media (max-width: 760px) {
