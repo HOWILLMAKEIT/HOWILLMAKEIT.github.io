@@ -239,7 +239,8 @@
   margin-bottom: 10px;
 }
 
-.timeline-meta span {
+.timeline-meta span,
+.timeline-meta a {
   padding: 3px 7px;
   color: var(--accent);
   background: var(--accent-soft);
@@ -247,6 +248,17 @@
   font-size: 0.62rem;
   font-weight: 800;
   letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.timeline-meta a {
+  border-bottom: 1px solid transparent;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.timeline-meta a:hover {
+  background: color-mix(in srgb, var(--accent) 18%, var(--theme));
+  border-color: var(--accent);
 }
 
 .timeline-item.future .timeline-meta span:last-child {
