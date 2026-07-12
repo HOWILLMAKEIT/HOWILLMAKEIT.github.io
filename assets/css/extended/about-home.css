@@ -345,6 +345,19 @@
   text-align: right;
 }
 
+.project-visual {
+  box-shadow: 8px 8px 0 color-mix(in srgb, #3578b8 11%, var(--theme));
+}
+
+.project-visual:hover {
+  border-color: color-mix(in srgb, #3578b8 52%, transparent);
+  box-shadow: 11px 11px 0 color-mix(in srgb, #3578b8 14%, var(--theme));
+}
+
+.project-visual b {
+  color: #3578b8;
+}
+
 .interests-section {
   display: grid;
   grid-template-columns: 170px minmax(0, 1fr);
