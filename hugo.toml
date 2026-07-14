@@ -127,8 +127,8 @@ disableKinds = ["taxonomy", "term"]
     codeFences = true
     guessSyntax = true
     lineNos = true
-    noClasses = true
-    style = "monokai"
+    noClasses = false
+    style = "github"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true          # 允许在 Markdown 里直接写 HTML

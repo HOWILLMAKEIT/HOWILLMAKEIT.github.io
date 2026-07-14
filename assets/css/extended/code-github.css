@@ -1,0 +1,267 @@
+:root,
+[data-theme="light"] {
+    --gh-code-bg: #f6f8fa;
+    --gh-code-fg: #1f2328;
+    --gh-code-border: #d0d7de;
+    --gh-code-gutter: #eef1f4;
+    --gh-code-muted: #6e7781;
+    --gh-code-keyword: #cf222e;
+    --gh-code-function: #8250df;
+    --gh-code-constant: #0550ae;
+    --gh-code-string: #0a3069;
+    --gh-code-variable: #953800;
+    --gh-code-tag: #116329;
+    --gh-code-inserted: #116329;
+    --gh-code-inserted-bg: #dafbe1;
+    --gh-code-deleted: #82071e;
+    --gh-code-deleted-bg: #ffebe9;
+    --gh-inline-code-bg: rgba(175, 184, 193, 0.2);
+}
+
+[data-theme="dark"] {
+    --gh-code-bg: #161b22;
+    --gh-code-fg: #e6edf3;
+    --gh-code-border: #30363d;
+    --gh-code-gutter: #0d1117;
+    --gh-code-muted: #8b949e;
+    --gh-code-keyword: #ff7b72;
+    --gh-code-function: #d2a8ff;
+    --gh-code-constant: #79c0ff;
+    --gh-code-string: #a5d6ff;
+    --gh-code-variable: #ffa657;
+    --gh-code-tag: #7ee787;
+    --gh-code-inserted: #aff5b4;
+    --gh-code-inserted-bg: #033a16;
+    --gh-code-deleted: #ffdcd7;
+    --gh-code-deleted-bg: #67060c;
+    --gh-inline-code-bg: rgba(110, 118, 129, 0.4);
+}
+
+/* GitHub-style code frame: quiet border, generous rhythm, no heavy glow. */
+.md-content .highlight:not(table) {
+    overflow: hidden;
+    background: var(--gh-code-bg) !important;
+    border: 1px solid var(--gh-code-border);
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(31, 35, 40, 0.04);
+}
+
+.md-content .highlight .chroma,
+.md-content .highlight pre,
+.md-content .highlight code,
+.md-content .chroma,
+.md-content pre.chroma,
+.md-content pre.chroma code {
+    color: var(--gh-code-fg) !important;
+    background: var(--gh-code-bg) !important;
+}
+
+.md-content .highlight pre.chroma code {
+    padding-block: 11px;
+}
+
+.md-content .highlight pre,
+.md-content .highlight code,
+.md-content pre code {
+    font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 13.5px;
+    line-height: 1.65;
+    text-shadow: none;
+}
+
+.md-content .highlight pre {
+    scrollbar-color: var(--gh-code-border) transparent;
+    scrollbar-width: thin;
+}
+
+.md-content .highlight pre::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.md-content .highlight pre::-webkit-scrollbar-thumb {
+    background: var(--gh-code-border);
+    border: 2px solid var(--gh-code-bg);
+    border-radius: 999px;
+}
+
+.md-content :not(pre) > code {
+    padding: 0.16em 0.38em;
+    color: var(--gh-code-fg);
+    background: var(--gh-inline-code-bg);
+    border: 0;
+    border-radius: 5px;
+    font-family: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 0.88em;
+    font-weight: 450;
+}
+
+/* Line numbers remain visible without competing with the code. */
+.md-content .chroma .lntd:first-child {
+    background: var(--gh-code-gutter);
+    border-right: 1px solid var(--gh-code-border);
+}
+
+.md-content .chroma .lnt,
+.md-content .chroma .ln {
+    color: var(--gh-code-muted);
+}
+
+/* Hugo turns line numbers into anchors for direct line linking. Keep the
+   interaction, but do not let the article-wide link underline style show. */
+.md-content .chroma a.lnlinks,
+.md-content .chroma a.lnlinks:hover,
+.md-content .chroma a.lnlinks:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+.md-content .chroma .hl {
+    background: color-mix(in srgb, var(--gh-code-constant) 10%, transparent);
+}
+
+/* GitHub Light / Dark syntax palette. */
+.md-content .chroma,
+.md-content .chroma .x,
+.md-content .chroma .p,
+.md-content .chroma .n,
+.md-content .chroma .nx,
+.md-content .chroma .py,
+.md-content .chroma .w {
+    color: var(--gh-code-fg);
+}
+
+.md-content .chroma .k,
+.md-content .chroma .kc,
+.md-content .chroma .kd,
+.md-content .chroma .kn,
+.md-content .chroma .kp,
+.md-content .chroma .kr,
+.md-content .chroma .kt,
+.md-content .chroma .o,
+.md-content .chroma .ow {
+    color: var(--gh-code-keyword);
+}
+
+.md-content .chroma .nf,
+.md-content .chroma .fm,
+.md-content .chroma .nc,
+.md-content .chroma .nd,
+.md-content .chroma .ne,
+.md-content .chroma .nl {
+    color: var(--gh-code-function);
+}
+
+.md-content .chroma .m,
+.md-content .chroma .mb,
+.md-content .chroma .mf,
+.md-content .chroma .mh,
+.md-content .chroma .mi,
+.md-content .chroma .il,
+.md-content .chroma .mo,
+.md-content .chroma .no,
+.md-content .chroma .bp {
+    color: var(--gh-code-constant);
+}
+
+.md-content .chroma .s,
+.md-content .chroma .sa,
+.md-content .chroma .sb,
+.md-content .chroma .sc,
+.md-content .chroma .dl,
+.md-content .chroma .sd,
+.md-content .chroma .s1,
+.md-content .chroma .s2,
+.md-content .chroma .se,
+.md-content .chroma .sh,
+.md-content .chroma .si,
+.md-content .chroma .sr,
+.md-content .chroma .ss,
+.md-content .chroma .sx {
+    color: var(--gh-code-string);
+}
+
+.md-content .chroma .na,
+.md-content .chroma .nb,
+.md-content .chroma .nv,
+.md-content .chroma .vc,
+.md-content .chroma .vg,
+.md-content .chroma .vi,
+.md-content .chroma .vm {
+    color: var(--gh-code-variable);
+}
+
+.md-content .chroma .nt,
+.md-content .chroma .ni,
+.md-content .chroma .nn {
+    color: var(--gh-code-tag);
+}
+
+.md-content .chroma .c,
+.md-content .chroma .ch,
+.md-content .chroma .cm,
+.md-content .chroma .c1,
+.md-content .chroma .cs,
+.md-content .chroma .cp,
+.md-content .chroma .cpf {
+    color: var(--gh-code-muted);
+    font-style: normal;
+}
+
+.md-content .chroma .gd {
+    color: var(--gh-code-deleted);
+    background: var(--gh-code-deleted-bg);
+}
+
+.md-content .chroma .gi {
+    color: var(--gh-code-inserted);
+    background: var(--gh-code-inserted-bg);
+}
+
+.md-content .chroma .err,
+.md-content .chroma .gr,
+.md-content .chroma .gt {
+    color: var(--gh-code-keyword);
+}
+
+/* Keep the existing copy action, but soften it to match the frame. */
+.md-content .copy-code {
+    display: block;
+    top: 8px;
+    right: 8px;
+    padding: 4px 8px;
+    color: var(--gh-code-muted);
+    background: color-mix(in srgb, var(--gh-code-bg) 88%, transparent);
+    border: 1px solid var(--gh-code-border);
+    border-radius: 6px;
+    opacity: 0;
+    transition: color 140ms ease, opacity 140ms ease, background-color 140ms ease;
+}
+
+.md-content .highlight:hover .copy-code,
+.md-content .copy-code:focus-visible {
+    color: var(--gh-code-fg);
+    opacity: 1;
+}
+
+.md-content .copy-code:hover {
+    background: var(--gh-code-gutter);
+}
+
+@media (max-width: 640px) {
+    .md-content .highlight pre,
+    .md-content .highlight code,
+    .md-content pre code {
+        font-size: 12.5px;
+    }
+
+    .md-content .copy-code {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .md-content .copy-code {
+        transition: none;
+    }
+}
