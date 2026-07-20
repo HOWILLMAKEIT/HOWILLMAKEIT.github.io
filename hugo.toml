@@ -53,6 +53,11 @@ disableKinds = ["taxonomy", "term"]
   author = "郭昊"
   DateFormat = "2006-01-02"
 
+  # 封面用于文章列表和社交分享，正文页由文章内容自行展示配图，避免首图重复。
+  [params.cover]
+    hiddenInSingle = true
+    hiddenInList = false
+
   # 页头 Logo 文字
   [params.label]
     text = "Hao Guo"
