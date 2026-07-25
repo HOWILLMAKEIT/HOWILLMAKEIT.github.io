@@ -515,6 +515,22 @@
   text-align: right;
 }
 
+.submission-visual {
+  margin: 0;
+  cursor: default;
+  box-shadow: 8px 8px 0 color-mix(in srgb, var(--accent) 9%, var(--theme));
+}
+
+.submission-visual:hover {
+  border-color: var(--line);
+  box-shadow: 8px 8px 0 color-mix(in srgb, var(--accent) 9%, var(--theme));
+  transform: none;
+}
+
+.submission-visual img {
+  object-fit: contain;
+}
+
 .project-visual {
   box-shadow: 8px 8px 0 color-mix(in srgb, #3578b8 11%, var(--theme));
 }
