@@ -1,7 +1,7 @@
 /* Horizontal editorial cards: square cover on the left, article copy on the right. */
 .list .post-entry {
   display: grid;
-  grid-template-columns: minmax(240px, 42%) minmax(0, 1fr);
+  grid-template-columns: minmax(230px, 39%) minmax(0, 1fr);
   grid-template-areas:
     "cover header"
     "cover summary"
@@ -44,7 +44,7 @@
 .list .post-entry .entry-content {
   grid-area: summary;
   margin: 10px 0;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
 }
 
 .list .post-entry .entry-footer {
