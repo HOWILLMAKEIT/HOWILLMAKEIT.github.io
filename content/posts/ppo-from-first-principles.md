@@ -4,6 +4,7 @@ date = '2026-07-20T12:00:00+08:00'
 lastmod = '2026-07-20T12:00:00+08:00'
 draft = false
 description = '从 Actor、Critic 与采样循环出发，梳理 Advantage、Return、GAE、PPO Loss 以及标准 PPO 与 RLHF-PPO 的完整训练流程。'
+summary = '从 Actor、Critic 与采样循环出发，梳理 Advantage、Return、GAE、PPO Loss 以及标准 PPO 与 RLHF-PPO 的完整训练流程。'
 math = true
 
 [cover]

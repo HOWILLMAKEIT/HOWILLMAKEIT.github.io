@@ -4,6 +4,7 @@ date = '2026-07-29T12:00:00+08:00'
 lastmod = '2026-07-29T12:31:00+08:00'
 draft = false
 description = '从 edmond 关于自制力的知乎回答出发，我将神圣座位、下必为例与国策树整理成了一款 macOS 桌面应用。'
+summary = '从 edmond 关于自制力的知乎回答出发，我将神圣座位、下必为例与国策树整理成了一款 macOS 桌面应用。本文介绍 CTDP、RSIP 的核心思想与项目设计。'
 
 [cover]
   image = '/images/posts/sacred-seat/focus-dashboard.png'

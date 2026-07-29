@@ -4,6 +4,7 @@ date = '2026-07-14T23:22:00+08:00'
 lastmod = '2026-07-15T01:30:00+08:00'
 draft = false
 description = '当本地安装了上百个 Skill，仅靠滚动列表很难快速定位目标。本文记录如何在 React 与 Tauri 架构中实现名称、描述和 SKILL.md 正文的本地搜索。'
+summary = '当本地安装了上百个 Skill，仅靠滚动列表很难快速定位目标。本文记录如何在 React 与 Tauri 架构中实现名称、描述和 SKILL.md 正文的本地搜索。'
 
 [cover]
   image = '/images/posts/cc-switch-skill-search/skills-search-cover.png'
