@@ -1,6 +1,22 @@
-/* Article-list covers use a wide editorial crop; single-post figures are untouched. */
+/* Horizontal editorial cards: square cover on the left, article copy on the right. */
+.list .post-entry {
+  display: grid;
+  grid-template-columns: minmax(180px, 34%) minmax(0, 1fr);
+  grid-template-areas:
+    "cover header"
+    "cover summary"
+    "cover meta";
+  column-gap: var(--gap);
+  align-items: start;
+  min-height: 228px;
+}
+
 .list .post-entry .entry-cover {
-  aspect-ratio: 3 / 1;
+  grid-area: cover;
+  align-self: stretch;
+  aspect-ratio: 1;
+  min-height: 100%;
+  margin: 0;
   overflow: hidden;
   border-radius: calc(var(--radius) - 2px);
   background: var(--tertiary);
@@ -10,18 +26,41 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center top;
   border-radius: 0;
   transition: transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+.list .post-entry .entry-header {
+  grid-area: header;
+  align-self: end;
+}
+
+.list .post-entry .entry-content {
+  grid-area: summary;
+  margin: 10px 0;
+  -webkit-line-clamp: 3;
+}
+
+.list .post-entry .entry-footer {
+  grid-area: meta;
+  align-self: end;
+}
+
 .list .post-entry:hover .entry-cover img,
 .list .post-entry:focus-within .entry-cover img {
-  transform: scale(1.012);
+  transform: scale(1.025);
 }
 
 @media (max-width: 640px) {
+  .list .post-entry {
+    display: block;
+    min-height: 0;
+  }
+
   .list .post-entry .entry-cover {
-    aspect-ratio: 16 / 7;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    margin-bottom: var(--gap);
   }
 }
