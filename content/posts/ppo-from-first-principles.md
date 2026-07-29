@@ -447,7 +447,7 @@ returns = advantages + values
 
 <div class="math-display">
 $$
-s_t=(x,y_{<t}),\qquad a_t=y_t
+s_t=(x,y_{\lt t}),\qquad a_t=y_t
 $$
 </div>
 
@@ -923,11 +923,11 @@ $$
 
 <div class="math-display">
 $$
-\log\pi_\theta(y_t\mid x,y_{<t})
+\log\pi_\theta(y_t\mid x,y_{\lt t})
 $$
 </div>
 
-Transformer 需要看到正确的前缀 $x,y_{<t}$。将完整回答按原顺序送入一次带 causal mask 的前向传播，就能同时得到所有 token 的 `new_log_prob` 和 Value。理论上也可以给每个 token 单独携带完整 prefix，再任意打乱 token 样本，但这会重复计算大量相同前缀，实际训练通常不会这样做。
+Transformer 需要看到正确的前缀 $x,y_{\lt t}$。将完整回答按原顺序送入一次带 causal mask 的前向传播，就能同时得到所有 token 的 `new_log_prob` 和 Value。理论上也可以给每个 token 单独携带完整 prefix，再任意打乱 token 样本，但这会重复计算大量相同前缀，实际训练通常不会这样做。
 
 因此，一批 rollout 对应的梯度更新次数大约是：
 
