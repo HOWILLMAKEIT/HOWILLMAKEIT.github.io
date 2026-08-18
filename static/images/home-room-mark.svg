@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">进入我的小屋</title>
+  <desc id="desc">带有窗户、门和烟囱的线稿小屋</desc>
+  <defs>
+    <linearGradient id="windowGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d8eee7"/>
+      <stop offset="1" stop-color="#b7dcd1"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="#176f60" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8.5 28.5 31.8 9.8 55.5 28.5" stroke-width="3.1"/>
+    <path d="M13.5 25.7v27.1h37V25.7" stroke-width="2.5"/>
+    <path d="M42.5 18.2v-7h6v12" stroke-width="2.5"/>
+    <path d="M47.8 10.7c3.2-1.7 4.7-4.1 4.7-7" stroke-width="2.2"/>
+    <path d="M51.9 5.2c1.8-.9 2.9-2.4 3.2-4.1" stroke-width="1.8" opacity=".68"/>
+    <rect x="18.5" y="31.5" width="10.5" height="9.5" rx="1.4" fill="url(#windowGlow)" stroke-width="2.2"/>
+    <path d="M23.75 31.8v8.8M18.9 36.25h9.7" stroke-width="1.35" opacity=".72"/>
+    <path d="M35.5 52.8V35.5h10.7v17.3" stroke-width="2.3"/>
+    <circle cx="43" cy="44.4" r="1.15" fill="#c79a47" stroke="none"/>
+    <path d="M7.5 53h49" stroke-width="2.2"/>
+  </g>
+</svg>

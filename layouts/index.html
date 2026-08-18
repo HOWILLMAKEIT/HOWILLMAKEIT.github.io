@@ -1,196 +1,111 @@
-{{- define "main" }}
-<div class="about-home">
-  <section class="about-hero" aria-labelledby="about-title">
-    <p class="hero-eyebrow">ABOUT ME</p>
-    <div class="hero-layout">
-      <div class="hero-copy">
-        <h1 id="about-title">郭昊 <span>/ Hao Guo</span></h1>
-        <p class="hero-lead">
-          华南理工大学计算机科学与工程学院学生，研究强化学习、进化计算与黑盒优化，
-          同时关注大模型训练、Agent 与 RAG 系统的工程实践。
-        </p>
-        <ul class="research-focus" aria-label="研究方向">
-          <li>强化学习</li>
-          <li>智能优化</li>
-          <li>LLM & Agent</li>
-        </ul>
-        <div class="hero-actions" aria-label="联系方式">
-          <a href="mailto:1450656923@qq.com">Email</a>
-          <a href="https://github.com/HOWILLMAKEIT" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://scholar.google.com/citations?hl=zh-CN&amp;user=V4qe-aEAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
-          <a href="/posts/">Blog</a>
-        </div>
-      </div>
-      <aside class="hero-aside">
-        <figure class="profile-photo">
-          <img src="/images/profile.jpg" alt="郭昊在雪山旅行时的个人照片" width="900" height="1200" fetchpriority="high">
-        </figure>
-      </aside>
-      <div class="support-widget" data-support-widget>
-        <div class="support-copy">
-          <span class="support-kicker">A SMALL TOKEN</span>
-          <p>如果内容对你有帮助，<br>欢迎留下一个赞作为支持。</p>
-        </div>
-        <button class="support-button" type="button" aria-label="为博客点赞" aria-pressed="false">
-          <span class="support-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 20.25s-7.5-4.35-7.5-10.13A4.37 4.37 0 0 1 12 7.08a4.37 4.37 0 0 1 7.5 3.04c0 5.78-7.5 10.13-7.5 10.13Z"/>
-            </svg>
-            <span class="support-label-default">点赞</span>
-            <span class="support-label-liked">已支持</span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </section>
+{{- /* 线稿书房首页：3D 可交互线稿房间，家具即导航。依赖 /vendor/three 与 /js/room.js，内容数据在下方 room-data JSON 中。 */ -}}
+{{- define "main" -}}
+{{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
+{{- $projects := slice
+      (dict "name" "LDO · 长时序多头 PPO 优化智能体" "tag" "第一作者 - IEEE TEVC（在审）"
+            "desc" "将变量分解、资源分配与优化模式切换建模为长时序决策问题，PPO 智能体在线决定大规模黑盒优化的分解策略（CEC'13 LSGO）。")
+      (dict "name" "LCC · 基于 PPO 的自适应策略调度" "tag" "第二作者 - GECCO 2026 Oral"
+            "desc" "用强化学习替代人工规则选择协同进化分解策略，验证对未见优化问题的跨任务泛化，并与 CMA-ES 结合。"
+            "url" "https://dl.acm.org/doi/10.1145/3795095.3805053")
+      (dict "name" "MetaBox-v2 · MetaBBO 研究与评测平台" "tag" "参与开发 - NeurIPS 2025"
+            "desc" "参与 PPO/RLDAS 基线与自动评测平台开发，支持强化学习优化器的并行训练和跨场景比较。"
+            "url" "https://github.com/MetaEvo/MetaBox")
+      (dict "name" "Sparrow · 轻量级大语言模型" "tag" "独立项目"
+            "desc" "Decoder-only Transformer + MoE（约 196M 参数 / 106M 激活），以有限算力走通 Pretrain → SFT → DPO 全流程，支持 DeepSpeed ZeRO 与 KV Cache。"
+            "url" "https://github.com/HOWILLMAKEIT/Sparrow")
+-}}
+{{- $honors := slice
+      "华南理工大学金阳光杯足球赛铜牌 ×3（校园足球赛事）"
+      "国家奖学金 ×2（2023–2024、2024–2025）"
+      "GECCO 2026 Full Paper · Oral（第二作者，已做线上主题汇报）"
+      "「挑战杯」全国大学生课外学术科技作品竞赛 全国二等奖"
+      "亚太杯数学建模二等奖 · MathorCup 华南赛区二等奖"
+      "GPA 3.87 / 专业排名 2/68"
+-}}
+{{- $about := dict
+      "lead" "华南理工大学计算机科学与工程学院本科生（网络工程，2023 级），研究强化学习、进化计算与黑盒优化，同时关注大模型训练与 Agent / RAG 的工程落地。"
+      "facts" (slice "强化学习 · PPO / Actor-Critic" "智能优化 · CMA-ES / 协同进化 / LSGO" "大模型 · Pretrain / SFT / DPO / MoE" "Agent & RAG · 工具调用 / 检索问答")
+      "more" "这个书房里的每件东西都是真的：书架上是博客文章，屏幕里是正在跑的实验，窗台上睡着一只猫。"
+-}}
+{{- $contact := slice
+      (dict "name" "Email" "sub" "1450656923@qq.com" "url" "mailto:1450656923@qq.com")
+      (dict "name" "GitHub" "sub" "@HOWILLMAKEIT" "url" "https://github.com/HOWILLMAKEIT")
+      (dict "name" "Google Scholar" "sub" "郭昊 Hao Guo" "url" "https://scholar.google.com/citations?hl=zh-CN&user=V4qe-aEAAAAJ")
+-}}
+{{- $links := slice
+      (dict "name" "GitHub" "sub" "github.com/HOWILLMAKEIT" "url" "https://github.com/HOWILLMAKEIT")
+      (dict "name" "Google Scholar" "sub" "论文与引用" "url" "https://scholar.google.com/citations?hl=zh-CN&user=V4qe-aEAAAAJ")
+      (dict "name" "Email" "sub" "写邮件给我" "url" "mailto:1450656923@qq.com")
+      (dict "name" "博客归档" "sub" "全部文章" "url" "/posts/")
+-}}
 
-  <section class="timeline-section" aria-labelledby="education-title">
-    <header class="section-heading">
-      <div>
-        <p class="section-kicker">EDUCATION</p>
-        <h2 id="education-title">教育经历</h2>
+<style>
+body{overflow:hidden!important;background:#f4f1e8!important}
+body>.header,body>.footer,body>.top-link{display:none!important}
+main.main{display:block!important;max-width:none!important;width:100%!important;height:100vh!important;margin:0!important;padding:0!important}
+</style>
+<link rel="stylesheet" href="/css/room-v2-graybox.css">
+  <main class="room-shell">
+    <canvas id="room-canvas" aria-label="郭昊真实房间的三维线条灰盒"></canvas>
+
+    <header class="room-header">
+      <div class="identity-card">
+        <span class="eyebrow">HOWILLMAKEIT · ROOM TOUR</span>
+        <h2>Hao Guo 的小屋</h2>
+        <p>欢迎光临～</p>
       </div>
-      <p>华南理工大学计算机科学与工程学院。</p>
+
+      <nav class="view-switcher" aria-label="预览镜头">
+        <button type="button" id="sound-toggle" aria-pressed="true">音效开</button>
+        <a href="/about/">关于我 ↗</a>
+        <a href="/posts/">文章 ↗</a>
+      </nav>
     </header>
 
-    <ol class="timeline">
-      <li class="timeline-item future">
-        <div class="timeline-date">2027.09 — 2030.06</div>
-        <div class="timeline-marker" aria-hidden="true"></div>
-        <article class="timeline-content">
-          <div class="timeline-meta"><span>EDUCATION</span><span>UPCOMING</span></div>
-          <h3>华南理工大学 · 计算机科学硕士</h3>
-          <p>将在计算机科学与工程学院继续攻读硕士学位，延续强化学习与智能优化方向的研究。</p>
-        </article>
-      </li>
-
-      <li class="timeline-item">
-        <div class="timeline-date">2023.09 — 2027.06</div>
-        <div class="timeline-marker" aria-hidden="true"></div>
-        <article class="timeline-content">
-          <div class="timeline-meta"><span>EDUCATION</span></div>
-          <h3>华南理工大学 · 网络工程本科</h3>
-          <p>GPA 3.87，专业排名 2/68；连续两学年获得国家奖学金，并逐步将学习重心转向 AI 算法研究。</p>
-        </article>
-      </li>
-    </ol>
-  </section>
-
-  <section class="timeline-section experience-section" aria-labelledby="experience-title">
-    <header class="section-heading">
+    <aside class="alignment-card" aria-label="当前灰盒说明">
       <div>
-        <p class="section-kicker">RESEARCH · INDUSTRY</p>
-        <h2 id="experience-title">科研与实习经历</h2>
+        <strong>欢迎来到我的小屋</strong>
+        <p>从大二起，我就在校外租房住。地毯、显示屏、冰箱、书桌……从摆放到配色，都还原自真实的小屋。它见证了我的点滴成长，欢迎您的到来～</p>
       </div>
-      <p>从算法研究到真实业务系统，持续学习，也持续构建。</p>
-    </header>
+    </aside>
 
-    <ol class="timeline">
 
-      <li class="timeline-item industry-featured">
-        <div class="timeline-date">2026.04 — 2026.06</div>
-        <div class="timeline-marker" aria-hidden="true"></div>
-        <article class="timeline-content paper-entry industry-entry">
-          <div class="paper-copy">
-            <div class="timeline-meta">
-              <span>INDUSTRY</span>
-              <span>PRODUCTION AI</span>
-              <a href="https://luckmeey.cn/" target="_blank" rel="noopener" aria-label="访问 LUCKMEEY 幸棉官网">LUCKMEEY ↗</a>
-            </div>
-            <h3>广州骑士集团 · AI 算法工程师</h3>
-            <p>为集团旗下年销超 20 亿元、全网粉丝超 300 万的头部内衣品牌 LUCKMEEY 幸棉开发生产级 AI 客服，并参与 Agent 新链路、模型评测与商品推荐落地。</p>
-          </div>
-          <a class="paper-visual industry-visual" href="https://luckmeey.cn/" target="_blank" rel="noopener" aria-label="访问 LUCKMEEY 幸棉官网">
-            <img src="/images/industry/luckmeey-internship.jpg" alt="LUCKMEEY 幸棉品牌活动现场" width="750" height="1000" loading="lazy">
-            <span><b>LUCKMEEY 幸棉</b><em>Official website ↗</em></span>
-          </a>
-        </article>
-      </li>
+    <div class="room-tooltip" id="room-tooltip" role="status" aria-live="polite"></div>
 
-      <li class="timeline-item submission-featured">
-        <div class="timeline-date">2025.12 — 2026.07</div>
-        <div class="timeline-marker" aria-hidden="true"></div>
-        <article class="timeline-content paper-entry submission-entry">
-          <div class="paper-copy">
-            <div class="timeline-meta">
-              <span>RESEARCH</span>
-              <span>FIRST AUTHOR</span>
-              <span>IEEE TEVC · SUBMITTED</span>
-            </div>
-            <h3>LDO · 长时序多头 PPO 优化智能体</h3>
-            <p>将变量分解、资源分配与优化模式切换建模为长时序决策问题；论文已投稿 IEEE Transactions on Evolutionary Computation，目前 Under Review。</p>
-          </div>
-          <figure class="paper-visual submission-visual">
-            <img src="/images/papers/ldo-tevc-submission.png" alt="IEEE Transactions on Evolutionary Computation 投稿确认记录，稿件信息已打码" width="1200" height="513" loading="lazy">
-            <figcaption><b>IEEE TEVC</b><em>Submission confirmation · Under Review</em></figcaption>
-          </figure>
-        </article>
-      </li>
+    <aside class="room-panel" id="room-panel" aria-hidden="true" aria-labelledby="room-panel-title">
+      <button class="panel-close" type="button" aria-label="关闭内容">×</button>
+      <span class="panel-eyebrow" id="room-panel-eyebrow">ROOM OBJECT</span>
+      <h2 id="room-panel-title"></h2>
+      <p class="panel-lead" id="room-panel-lead"></p>
+      <div class="panel-content" id="room-panel-content"></div>
+    </aside>
 
-      <li class="timeline-item paper-featured">
-        <div class="timeline-date">2025.08 — 2026.07</div>
-        <div class="timeline-marker" aria-hidden="true"></div>
-        <article class="timeline-content paper-entry">
-          <div class="paper-copy">
-            <div class="timeline-meta">
-              <span>RESEARCH</span>
-              <span>ONLINE TALK · 2026.07.17</span>
-              <a href="https://dl.acm.org/doi/10.1145/3795095.3805053" target="_blank" rel="noopener" aria-label="查看 LCC 论文的 ACM 官方页面">GECCO 2026 ORAL · ACM ↗</a>
-            </div>
-            <h3>LCC · 基于 PPO 的自适应策略调度</h3>
-            <p>使用强化学习替代人工规则选择分解策略，验证对未见优化问题的跨任务泛化；论文第二作者，于 2026.07.17 在 GECCO 2026 完成线上主题汇报。</p>
-          </div>
-          <a class="paper-visual" href="https://dl.acm.org/doi/10.1145/3795095.3805053" target="_blank" rel="noopener" aria-label="在 ACM Digital Library 查看 LCC 论文">
-            <img src="/images/papers/lcc-overview.png" alt="LCC-CMAES 使用强化学习选择分解策略的方法总览图" width="1200" height="502" loading="lazy">
-            <span><b>LCC-CMAES</b><em>Paper overview · View on ACM ↗</em></span>
-          </a>
-        </article>
-      </li>
+    <nav class="room-quicknav" aria-label="房间内容快捷入口">
+      <button type="button" data-room-object="blog">博客</button>
+      <button type="button" data-room-object="projects">项目</button>
+      <button type="button" data-room-object="experience">经历</button>
+      <button type="button" data-room-object="honors">荣誉</button>
+      <button type="button" data-room-object="about">关于</button>
+      <button type="button" data-room-object="links">链接</button>
+    </nav>
 
-      <li class="timeline-item project-featured">
-        <div class="timeline-date">2025.08 — 至今</div>
-        <div class="timeline-marker" aria-hidden="true"></div>
-        <article class="timeline-content paper-entry project-entry">
-          <div class="paper-copy">
-            <div class="timeline-meta">
-              <span>OPEN SOURCE</span>
-              <span>NEURIPS 2025</span>
-              <a href="https://github.com/MetaEvo/MetaBox" target="_blank" rel="noopener" aria-label="查看 MetaBox-v2 GitHub 仓库">GITHUB ↗</a>
-            </div>
-            <h3>MetaBox-v2 · MetaBBO 研究与评测平台</h3>
-            <p>参与 PPO/RLDAS 基线与自动评测平台开发，支持强化学习优化器的并行训练和跨场景比较。</p>
-          </div>
-          <a class="paper-visual project-visual" href="https://github.com/MetaEvo/MetaBox" target="_blank" rel="noopener" aria-label="在 GitHub 查看 MetaBox-v2 开源项目">
-            <img src="/images/papers/metabox-v2-features.png" alt="MetaBox-v2 开源研究与评测平台功能总览图" width="1200" height="555" loading="lazy">
-            <span><b>METABOX-V2</b><em>Open-source platform · View on GitHub ↗</em></span>
-          </a>
-        </article>
-      </li>
-    </ol>
-  </section>
-
-  <section class="interests-section" aria-labelledby="interests-title">
-    <div>
-      <p class="section-kicker">BEYOND RESEARCH</p>
-      <h2 id="interests-title">兴趣爱好</h2>
+    <div class="room-loading" id="room-loading">
+      <span></span>
+      <p>正在搭建房间</p>
     </div>
-    <p>工作与研究之外，我喜欢足球、旅行、攀岩，也享受游戏、美剧和音乐。</p>
-    <ul aria-label="兴趣爱好列表">
-      <li>足球</li>
-      <li>旅行</li>
-      <li>攀岩</li>
-      <li>游戏</li>
-      <li>美剧</li>
-      <li>音乐</li>
-    </ul>
-  </section>
 
-  <section class="home-cta" aria-label="博客入口">
-    <div>
-      <p>NOTES & WRITING</p>
-      <h2>研究之外，我也记录学习过程。</h2>
-    </div>
-    <a href="/posts/">浏览全部文章 <span>→</span></a>
-  </section>
-</div>
-{{- end }}
+    <noscript>
+      <section class="fallback">
+        <h1>需要启用 JavaScript</h1>
+        <p>当前页面是房间空间灰盒。正式内容仍可从主站导航访问。</p>
+        <a href="/">返回主页</a>
+      </section>
+    </noscript>
+  </main>
+
+  <script src="/vendor/three/three.min.js"></script>
+  <script src="/js/room-v2/graybox.js"></script>
+<script id="room-data" type="application/json">{{- $pd := slice -}}{{- range first 6 $posts -}}{{- $pd = $pd | append (dict "title" .Title "url" .RelPermalink "date" (.Date.Format "2006-01")) -}}{{- end -}}
+{"posts":{{- $pd | jsonify | safeJS -}},"projects":{{- $projects | jsonify | safeJS -}},"honors":{{- $honors | jsonify | safeJS -}},"about":{{- $about | jsonify | safeJS -}},"contact":{{- $contact | jsonify | safeJS -}},"links":{{- $links | jsonify | safeJS -}}}
+</script>
+{{- end -}}

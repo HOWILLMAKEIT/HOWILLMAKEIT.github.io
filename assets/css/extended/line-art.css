@@ -1,0 +1,143 @@
+/* ============================================================
+   line-art.css —— 内页「线稿」皮肤
+   与首页 3D 线稿书房呼应：墨线边框、手绘感圆角、
+   波浪下划线、硬阴影。全部使用主题变量，暗色模式自动反转。
+   （文件按字母序在 post-list.css 之前加载，覆盖处已提高优先级）
+   ============================================================ */
+
+/* ---------- 手绘圆角工具类 ---------- */
+:root {
+  --ink: var(--primary);
+  --paper: var(--entry);
+  --sketch-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --sketch-radius-sm: 12px 5px 14px 6px / 6px 14px 5px 12px;
+}
+
+/* ---------- 文章标题：墨线 ---------- */
+.post-title {
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 0.45em;
+}
+
+/* ---------- 正文小节标题：虚线笔道 ---------- */
+.post-content h2 {
+  border-bottom: 2px dashed color-mix(in srgb, var(--ink) 55%, transparent);
+  padding-bottom: 0.25em;
+}
+.post-content h3::before {
+  content: "✎ ";
+  color: var(--secondary);
+  font-size: 0.85em;
+}
+
+/* ---------- 正文链接：波浪下划线 ---------- */
+.post-content p > a,
+.post-content li > a {
+  text-decoration: underline wavy;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: color-mix(in srgb, var(--secondary) 75%, transparent);
+}
+.post-content p > a:hover,
+.post-content li > a:hover {
+  text-decoration-color: var(--secondary);
+}
+
+/* ---------- 引用块：便签纸 ---------- */
+.post-content blockquote {
+  border: 2px solid var(--ink);
+  border-radius: var(--sketch-radius);
+  background: var(--paper);
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--ink) 22%, transparent);
+  transform: rotate(-0.3deg);
+  padding: 0.9em 1.4em;
+}
+.post-content blockquote p { margin: 0.2em 0; }
+
+/* ---------- 代码块：描边画框 ---------- */
+.post-content pre {
+  border: 2px solid var(--ink);
+  border-radius: var(--sketch-radius-sm);
+  box-shadow: 5px 5px 0 color-mix(in srgb, var(--ink) 20%, transparent);
+}
+.post-content code {
+  border-radius: var(--sketch-radius-sm);
+}
+.post-content p > code,
+.post-content li > code,
+.post-content td > code {
+  border: 1px dashed color-mix(in srgb, var(--ink) 45%, transparent);
+  padding: 0.1em 0.4em;
+}
+
+/* ---------- 表格：手绘框 ---------- */
+.post-content table {
+  border: 2px solid var(--ink);
+  border-radius: var(--sketch-radius-sm);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+.post-content table th {
+  border-bottom: 2px dashed color-mix(in srgb, var(--ink) 60%, transparent);
+}
+
+/* ---------- 文内图片：拍立得相框 ---------- */
+.post-content figure:not(.cc-search-figure) {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: var(--sketch-radius-sm);
+  box-shadow: 5px 5px 0 color-mix(in srgb, var(--ink) 20%, transparent);
+  padding: 10px 10px 4px;
+  transform: rotate(-0.4deg);
+}
+.post-content figure:not(.cc-search-figure) img {
+  border: 1px solid color-mix(in srgb, var(--ink) 40%, transparent);
+  border-radius: 4px;
+}
+.post-content figure:not(.cc-search-figure) figcaption {
+  font-size: 0.8em;
+  padding: 6px 4px 8px;
+  color: var(--secondary);
+}
+
+/* ---------- 分隔线：撕纸虚线 ---------- */
+.post-content hr {
+  border: 0;
+  border-top: 2px dashed color-mix(in srgb, var(--ink) 50%, transparent);
+}
+
+/* ---------- 文章列表：线稿卡片（提高优先级覆盖 post-list.css） ---------- */
+body.list .post-entry {
+  border: 2px solid var(--ink);
+  border-radius: var(--sketch-radius);
+  box-shadow: 6px 6px 0 color-mix(in srgb, var(--ink) 18%, transparent);
+  background: var(--paper);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+body.list .post-entry:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 color-mix(in srgb, var(--ink) 25%, transparent);
+}
+body.list .post-entry .entry-cover {
+  border: 1.5px solid var(--ink);
+  border-radius: var(--sketch-radius-sm);
+}
+
+/* ---------- 顶部导航：墨线悬停 ---------- */
+.nav a:hover {
+  text-decoration: underline wavy;
+  text-underline-offset: 6px;
+}
+
+/* ---------- 归档年份线 ---------- */
+.archives-year {
+  border-bottom: 2px dashed color-mix(in srgb, var(--ink) 55%, transparent);
+  padding-bottom: 0.2em;
+}
+
+/* ---------- 键盘选中：墨块反白 ---------- */
+.post-content ::selection {
+  background: var(--ink);
+  color: var(--theme);
+}
