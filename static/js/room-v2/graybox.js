@@ -472,6 +472,36 @@
   root.add(doorKnob);
   hitProxy("door", "推门 · 关于我", [-3.34, 1.5, 4.92], [1.7, 3.12, 0.65], "door");
 
+  // A physical wall switch beside the entrance controls the room atmosphere.
+  outlinedBox("wall-light-switch-plate", [0.34, 0.48, 0.07], [-2.3, 1.6, 4.9], {
+    fill: 0xe8e1d3,
+    opacity: 0.42,
+    line: lineMaterials.detail,
+  });
+  const lightSwitchPaddle = new THREE.Group();
+  lightSwitchPaddle.position.set(-2.3, 1.84, 4.96);
+  const lightSwitchGeometry = new THREE.BoxGeometry(0.16, 0.25, 0.06);
+  lightSwitchPaddle.add(
+    new THREE.Mesh(lightSwitchGeometry, fillMaterial(0xd8cdbb, 0.72)),
+    new THREE.LineSegments(new THREE.EdgesGeometry(lightSwitchGeometry), lineMaterials.main),
+  );
+  root.add(lightSwitchPaddle);
+  const lightSwitchIndicatorMaterial = new THREE.MeshBasicMaterial({ color: 0x78958a, toneMapped: false });
+  const lightSwitchIndicator = new THREE.Mesh(
+    new THREE.SphereGeometry(0.025, 12, 8),
+    lightSwitchIndicatorMaterial,
+  );
+  lightSwitchIndicator.position.set(-2.3, 2.07, 5.015);
+  root.add(lightSwitchIndicator);
+  const lightSwitchInteraction = hitProxy(
+    "wall-light-switch",
+    "灯光 · 切换到夜晚",
+    [-2.3, 1.84, 4.96],
+    [0.52, 0.68, 0.34],
+    null,
+    () => setRoomNight(!roomNight, true),
+  );
+
   // Refrigerator between curtain and desk. Double doors swing open to reveal the interior.
   outlinedBox("fridge-lower", [1.16, 1.35, 1.08], [-3.25, 0, -4.28], { opacity: 0.17 });
   outlinedBox("fridge-upper", [1.16, 0.98, 1.08], [-3.25, 1.35, -4.28], { opacity: 0.17 });
@@ -966,6 +996,11 @@
   let transition = null;
   let hoveredObject = null;
   let soundEnabled = true;
+  const roomThemeStorageKey = "pref-theme";
+  let roomNight = false;
+  const screenGlowPlanes = [];
+  let screenGlowTexture = null;
+  let screenBeamTexture = null;
   let audioContext = null;
   const activeObjectAudios = new Map();
   const objectSounds = {
@@ -974,6 +1009,183 @@
     "office-chair-roll": { src: "/audio/room/office-chair-roll.mp3", volume: 0.24 },
     "window-open": { src: "/audio/room/window-open.mp3", volume: 0.3 },
   };
+
+  function createScreenGlowTexture() {
+    const glowCanvas = document.createElement("canvas");
+    glowCanvas.width = 256;
+    glowCanvas.height = 256;
+    const context = glowCanvas.getContext("2d");
+    const gradient = context.createRadialGradient(128, 116, 18, 128, 128, 126);
+    gradient.addColorStop(0, "rgba(224, 247, 255, 0.78)");
+    gradient.addColorStop(0.34, "rgba(153, 218, 238, 0.34)");
+    gradient.addColorStop(1, "rgba(93, 164, 188, 0)");
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, 256, 256);
+    const texture = new THREE.CanvasTexture(glowCanvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    return texture;
+  }
+
+  function createScreenBeamTexture() {
+    const beamCanvas = document.createElement("canvas");
+    beamCanvas.width = 320;
+    beamCanvas.height = 640;
+    const context = beamCanvas.getContext("2d");
+    context.clearRect(0, 0, beamCanvas.width, beamCanvas.height);
+
+    const paintBeam = (blur, alpha, inset) => {
+      const gradient = context.createLinearGradient(0, 0, 0, beamCanvas.height);
+      gradient.addColorStop(0, `rgba(210, 242, 252, ${alpha})`);
+      gradient.addColorStop(0.34, `rgba(164, 219, 237, ${alpha * 0.58})`);
+      gradient.addColorStop(1, "rgba(112, 178, 202, 0)");
+      context.save();
+      context.filter = `blur(${blur}px)`;
+      context.fillStyle = gradient;
+      context.beginPath();
+      context.moveTo(132 + inset, 6);
+      context.lineTo(188 - inset, 6);
+      context.lineTo(308 - inset, 628);
+      context.lineTo(12 + inset, 628);
+      context.closePath();
+      context.fill();
+      context.restore();
+    };
+
+    paintBeam(24, 0.16, 0);
+    paintBeam(12, 0.13, 18);
+    paintBeam(5, 0.08, 34);
+    const texture = new THREE.CanvasTexture(beamCanvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    return texture;
+  }
+
+  function ensureScreenGlows() {
+    if (screenGlowPlanes.length) return;
+    if (!screenGlowTexture) screenGlowTexture = createScreenGlowTexture();
+    if (!screenBeamTexture) screenBeamTexture = createScreenBeamTexture();
+    const targets = [];
+    root.traverse((object) => {
+      if (!object.isMesh || !object.geometry || !object.material) return;
+      const objectPath = [object.name, object.parent?.name, object.parent?.parent?.name]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      const materials = Array.isArray(object.material) ? object.material : [object.material];
+      if (/(monitor|screen|display)/.test(objectPath) && materials.some((material) => material.map)) {
+        targets.push(object);
+      }
+    });
+
+    targets.forEach((screen) => {
+      screen.geometry.computeBoundingBox();
+      const size = new THREE.Vector3();
+      screen.geometry.boundingBox.getSize(size);
+      const glow = new THREE.Mesh(
+        new THREE.PlaneGeometry(Math.max(size.x * 1.5, 0.75), Math.max(size.y * 1.55, 0.6)),
+        new THREE.MeshBasicMaterial({
+          map: screenGlowTexture,
+          color: 0xbdefff,
+          transparent: true,
+          opacity: 0.56,
+          depthWrite: false,
+          depthTest: false,
+          blending: THREE.AdditiveBlending,
+          toneMapped: false,
+        }),
+      );
+      glow.position.set(0, -size.y * 0.12, Math.max(size.z * 0.5, 0.025) + 0.045);
+      glow.renderOrder = 10;
+      glow.visible = false;
+      screen.add(glow);
+      screenGlowPlanes.push(glow);
+
+      // A soft textured sheet suggests projected light without producing the
+      // hard geometric sides of a solid frustum.
+      const beamLength = 2.45;
+      const beamWidth = Math.max(size.x * 2.25, 1.15);
+      const beam = new THREE.Mesh(
+        new THREE.PlaneGeometry(beamWidth, beamLength),
+        new THREE.MeshBasicMaterial({
+          map: screenBeamTexture,
+          color: 0xaeddeb,
+          transparent: true,
+          opacity: 0.46,
+          depthWrite: false,
+          depthTest: true,
+          side: THREE.DoubleSide,
+          blending: THREE.AdditiveBlending,
+          toneMapped: false,
+        }),
+      );
+      beam.position.set(0, -size.y * 0.18, beamLength * 0.49 + 0.08);
+      beam.rotation.x = Math.PI * 0.57;
+      beam.renderOrder = 4;
+      beam.visible = false;
+      screen.add(beam);
+      screenGlowPlanes.push(beam);
+    });
+  }
+
+  function setRoomNight(night, withSound) {
+    roomNight = Boolean(night);
+    document.body.classList.toggle("room-night", roomNight);
+    document.body.classList.toggle("dark", roomNight);
+    lightSwitchInteraction.label = roomNight ? "灯光 · 切换到白天" : "灯光 · 切换到夜晚";
+    lightSwitchIndicatorMaterial.color.setHex(roomNight ? 0xe2bc65 : 0x78958a);
+
+    // Displays remain self-lit after the room light is switched off.
+    root.traverse((object) => {
+      if (!object.isMesh || !object.material) return;
+      const objectPath = [object.name, object.parent?.name, object.parent?.parent?.name]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+      if (!/(monitor|screen|display)/.test(objectPath)) return;
+      const materials = Array.isArray(object.material) ? object.material : [object.material];
+      materials.forEach((material) => {
+        if (!material.color) return;
+        if (material.userData.roomDayColor === undefined) {
+          material.userData.roomDayColor = material.color.getHex();
+        }
+        material.color.setHex(material.userData.roomDayColor);
+        material.opacity = 1;
+        material.toneMapped = false;
+        material.needsUpdate = true;
+      });
+    });
+    ensureScreenGlows();
+    screenGlowPlanes.forEach((glow) => {
+      glow.visible = roomNight;
+    });
+
+    const from = lightSwitchPaddle.rotation.x;
+    const to = roomNight ? -0.34 : 0.34;
+    if (withSound) {
+      playObjectSound("light-switch");
+      tween(180, (value) => {
+        lightSwitchPaddle.rotation.x = from + (to - from) * value;
+      });
+    } else {
+      lightSwitchPaddle.rotation.x = to;
+    }
+
+    try {
+      window.localStorage.setItem(roomThemeStorageKey, roomNight ? "dark" : "light");
+    } catch (error) {
+      // The room remains functional when storage is unavailable.
+    }
+  }
+
+  function restoreRoomTheme() {
+    let savedTheme = null;
+    try {
+      savedTheme = window.localStorage.getItem(roomThemeStorageKey);
+    } catch (error) {
+      savedTheme = null;
+    }
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setRoomNight(savedTheme ? savedTheme === "dark" : prefersDark, false);
+  }
   let siteData = { posts: [], projects: [], honors: [] };
 
   const objectCopy = {
@@ -1482,7 +1694,14 @@
 
   window.addEventListener("resize", resize, { passive: true });
 
+  window.addEventListener("storage", (event) => {
+    if (event.key === roomThemeStorageKey && event.newValue) {
+      setRoomNight(event.newValue === "dark", false);
+    }
+  });
+
   resize();
+  restoreRoomTheme();
   setCameraPreset("overview", true);
   loadSiteData();
   requestAnimationFrame(render);

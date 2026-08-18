@@ -503,3 +503,156 @@ body.is-ready .room-loading {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* The room's dark state is controlled by the physical switch beside the door. */
+body,
+#room-canvas,
+.identity-card,
+.view-switcher,
+.alignment-card,
+.legend,
+.room-panel,
+.room-quicknav {
+  transition:
+    color 420ms ease,
+    background-color 420ms ease,
+    border-color 420ms ease,
+    box-shadow 420ms ease,
+    filter 520ms ease;
+}
+
+.room-shell::after {
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 14%, rgba(164, 193, 205, 0.2), transparent 24%),
+    linear-gradient(155deg, rgba(31, 49, 48, 0.05), rgba(3, 9, 12, 0.4));
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 520ms ease;
+}
+
+body.room-night {
+  --paper: #101715;
+  --paper-soft: rgba(18, 26, 23, 0.9);
+  --ink: #e4ebe6;
+  --muted: #aab7af;
+  --line: rgba(224, 234, 227, 0.2);
+  --green: #789f8e;
+  --green-deep: #b2d5c4;
+  --added: #d3a862;
+  --shadow: rgba(0, 0, 0, 0.34);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(111, 146, 154, 0.22), transparent 30%),
+    radial-gradient(circle at 78% 74%, rgba(82, 111, 95, 0.12), transparent 34%),
+    linear-gradient(145deg, #17211e 0%, #0e1513 52%, #090e0d 100%);
+}
+
+body.room-night #room-canvas {
+  filter: brightness(0.84) saturate(0.78) contrast(1.08) sepia(0.04);
+}
+
+body.room-night .room-shell::after {
+  opacity: 1;
+}
+
+body.room-night .identity-card,
+body.room-night .view-switcher,
+body.room-night .alignment-card,
+body.room-night .legend,
+body.room-night .room-panel,
+body.room-night .room-quicknav {
+  border-color: rgba(220, 233, 224, 0.22);
+  background: rgba(17, 25, 22, 0.9);
+  box-shadow: 6px 7px 0 rgba(0, 0, 0, 0.22);
+}
+
+body.room-night .identity-card,
+body.room-night .identity-card h1,
+body.room-night .identity-card p,
+body.room-night .identity-card strong,
+body.room-night .identity-card span,
+body.room-night .view-switcher,
+body.room-night .alignment-card,
+body.room-night .legend,
+body.room-night .room-panel,
+body.room-night .room-panel h2,
+body.room-night .room-panel h3,
+body.room-night .room-panel p {
+  color: #edf4ef;
+}
+
+body.room-night .identity-card,
+body.room-night .identity-card a,
+body.room-night .identity-card .tag,
+body.room-night .view-switcher,
+body.room-night .view-switcher button,
+body.room-night .view-switcher a,
+body.room-night .alignment-card,
+body.room-night .legend,
+body.room-night .room-panel,
+body.room-night .panel-close,
+body.room-night .room-quicknav,
+body.room-night .room-quicknav button {
+  border-color: rgba(231, 241, 234, 0.46);
+}
+
+body.room-night .view-switcher button,
+body.room-night .view-switcher a,
+body.room-night .room-quicknav button,
+body.room-night .panel-close {
+  color: var(--ink);
+}
+
+body.room-night .room-tooltip {
+  border-color: rgba(220, 233, 224, 0.26);
+  background: rgba(15, 23, 20, 0.96);
+  color: var(--ink);
+  box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#room-panel-content > * + *,
+#room-panel-content .panel-list > * + *,
+#room-panel-content .panel-stack > * + * {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(23, 35, 31, 0.22);
+}
+
+#room-panel-content hr {
+  display: block;
+  width: 100%;
+  height: 0;
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid rgba(23, 35, 31, 0.34);
+}
+
+#room-panel-content > div > * + *,
+#room-panel-content > section > * + *,
+#room-panel-content ul > li + li {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(23, 35, 31, 0.26);
+}
+
+body.room-night #room-panel-content > * + *,
+body.room-night #room-panel-content .panel-list > * + *,
+body.room-night #room-panel-content .panel-stack > * + * {
+  border-top-color: rgba(229, 240, 232, 0.38);
+}
+
+body.room-night #room-panel-content hr,
+body.room-night #room-panel-content > div > * + *,
+body.room-night #room-panel-content > section > * + *,
+body.room-night #room-panel-content ul > li + li {
+  border-top-color: rgba(229, 240, 232, 0.5);
+}
+
+body.room-night #room-panel-content * {
+  border-color: rgba(229, 240, 232, 0.46) !important;
+}
