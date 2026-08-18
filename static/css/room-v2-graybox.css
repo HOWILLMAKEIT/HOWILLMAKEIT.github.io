@@ -656,3 +656,42 @@ body.room-night #room-panel-content ul > li + li {
 body.room-night #room-panel-content * {
   border-color: rgba(229, 240, 232, 0.46) !important;
 }
+
+.panel-static-item .brand-name {
+  display: inline-block;
+  margin: 0 0.16em;
+  padding: 3px 9px 2px;
+  border: 1.5px solid var(--ink);
+  border-radius: 7px;
+  background: var(--paper-soft);
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82em;
+  font-weight: 800;
+  letter-spacing: 0.045em;
+  line-height: 1.35;
+  vertical-align: 0.08em;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.panel-static-item .experience-meta,
+.panel-static-item .experience-description {
+  display: block;
+}
+
+.panel-static-item .experience-meta {
+  margin-bottom: 8px;
+  color: var(--green-deep);
+  font-weight: 700;
+}
+
+.panel-static-item .experience-description {
+  line-height: 1.75;
+}
+
+body.room-night .panel-static-item .brand-name {
+  background: rgba(31, 43, 38, 0.94);
+  color: #edf4ef;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
