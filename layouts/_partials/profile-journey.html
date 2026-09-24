@@ -16,7 +16,7 @@
   <ul class="journey-legend" aria-label="颜色说明">
     <li class="journey-research">优化算法 / 科研</li><li class="journey-project">大模型 / Agent</li>
     <li class="journey-internships">实习</li><li class="journey-open-source">开源贡献</li>
-    <li class="journey-education">课程学习</li><li class="journey-background">阶段背景</li>
+    <li class="journey-education">课程学习</li><li class="journey-background">阶段背景</li><li class="journey-service">学术服务</li>
   </ul>
   <p class="journey-scroll-hint">← 左右滑动，查看完整月份与项目 →</p>
   <div class="journey-viewport" role="region" aria-label="按学年排列的可横向滚动项目时间轴" tabindex="0">
@@ -30,7 +30,7 @@
           {{- if not $period }}{{ $period = (index $entries .ref).date }}{{ end -}}
           {{- $span := sub .end .start -}}
           {{- if not .endAtStart }}{{ $span = add $span 1 }}{{ end -}}
-          <a class="journey-event journey-{{ .kind }}{{ if ge .start 10 }} journey-event--right{{ end }}{{ if .ongoing }} journey-event--ongoing{{ end }}" href="#{{ .ref }}" style="{{ printf "--from:%d;--span:%d;--lane:%d" (int (sub .start 1)) (int $span) (int .lane) | safeCSS }}" aria-label="{{ .label }}，{{ $period }}；查看详细介绍">
+          <a class="journey-event journey-{{ .kind }}{{ if ge .start 10 }} journey-event--right{{ end }}{{ if .ongoing }} journey-event--ongoing{{ end }}{{ if .point }} journey-event--point{{ end }}" href="#{{ .ref }}" style="{{ printf "--from:%d;--span:%d;--lane:%d" (int (sub .start 1)) (int $span) (int .lane) | safeCSS }}" aria-label="{{ .label }}，{{ $period }}；查看详细介绍">
             <span class="journey-event-label"><strong>{{ .label }}</strong><small>{{ .caption }}</small></span>
             <span class="journey-bar" aria-hidden="true"></span>
           </a>

@@ -6,6 +6,7 @@
   --journey-open-source: #aa4768;
   --journey-education: #9671ce;
   --journey-background: #9aa4b3;
+  --journey-service: #555d6b;
   position: relative;
   left: 50%;
   width: min(1240px, calc(100vw - 40px));
@@ -37,6 +38,7 @@
   --journey-open-source: #f39ab9;
   --journey-education: #c2a1ef;
   --journey-background: #a8b3c0;
+  --journey-service: #cbd4e0;
 }
 .about-home .journey-header { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
 .about-home .journey-header h2 { margin: 5px 0 8px; color: var(--about-ink); font-size: clamp(1.5rem, 3vw, 2.2rem); }
@@ -51,6 +53,8 @@
 .about-home .journey-open-source { --event-color: var(--journey-open-source); }
 .about-home .journey-education { --event-color: var(--journey-education); }
 .about-home .journey-background { --event-color: var(--journey-background); }
+.about-home .journey-service { --event-color: var(--journey-service); }
+.about-home .journey-legend .journey-service::before { width: 10px; height: 10px; border-radius: 50%; }
 .about-home .journey-scroll-hint { display: none; }
 .about-home .journey-viewport { overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-color: var(--about-muted) transparent; }
 .about-home .journey-viewport:focus-visible { outline: 2px solid var(--journey-research); outline-offset: -2px; }
@@ -90,6 +94,19 @@
 .about-home .journey-event:focus-visible .journey-bar { height: 13px; box-shadow: 2px 3px 0 var(--about-shadow-color); }
 .about-home .journey-event:focus-visible { outline: 2px solid var(--event-color); outline-offset: 4px; }
 .about-home .journey-event--ongoing .journey-bar::after { position: absolute; right: -9px; top: -3px; content: "→"; color: var(--event-color); font-size: 1rem; font-weight: 800; line-height: 1; }
+.about-home .journey-event--point .journey-bar {
+  right: auto;
+  bottom: -2px;
+  left: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--about-paper);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--event-color);
+}
+.about-home .journey-event--point .journey-bar::before { display: none; }
+.about-home .journey-event--point:hover .journey-bar,
+.about-home .journey-event--point:focus-visible .journey-bar { height: 14px; box-shadow: 0 0 0 4px var(--event-color); }
 .about-home .journey-note { margin: 12px 0 0; color: var(--about-muted); font-size: 0.7rem; line-height: 1.7; }
 .about-home :is(.education-card, .profile-project-card) { scroll-margin-top: 30px; }
 @media (max-width: 760px) {
