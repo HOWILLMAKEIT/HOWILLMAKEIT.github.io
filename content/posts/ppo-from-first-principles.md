@@ -74,8 +74,8 @@ $$
 
 $\rho_t$ 是新旧策略对同一 Token 的概率比，$\bar\rho_t$ 是裁剪后的概率比，$\epsilon$ 是裁剪幅度。Actor 最小化 $-\mathbb E_t[J_t]$，只对有效回答 Token 求平均：
 
-- $\hat A_t>0$ 时，增大该 Token 概率会提高目标；$\rho_t>1+\epsilon$ 后，这个样本的裁剪项不再鼓励继续增大。
-- $\hat A_t<0$ 时，减小该 Token 概率会提高目标；$\rho_t<1-\epsilon$ 后，这个样本的裁剪项不再鼓励继续减小。
+- $\hat A_t>0$ 时，增大该 Token 概率会提高目标；当 $\rho_t>1+\epsilon$，该样本的 PPO-Clip 项梯度为零，不再推动该 Token 的概率继续增加。
+- $\hat A_t<0$ 时，减小该 Token 概率会提高目标；当 $\rho_t<1-\epsilon$，该样本的 PPO-Clip 项梯度为零，不再推动该 Token 的概率继续降低。
 
 例如 $\epsilon=0.2$：正优势 $\hat A_t=2$、$\rho_t=1.5$ 时，两项分别为 $3$ 和 $2.4$，取 $2.4$；负优势 $\hat A_t=-2$、$\rho_t=0.6$ 时，两项分别为 $-1.2$ 和 $-1.6$，取 $-1.6$。**裁剪限制的是训练目标，不是直接截断模型输出的概率**。这里比较的是当前 Actor 与**采样旧策略**；上一节 KL 奖励比较的是**采样策略与冻结 Reference**，两者用途不同。[来源：OpenAI PPO 说明](https://spinningup.openai.com/en/latest/algorithms/ppo.html#key-equations)
 
