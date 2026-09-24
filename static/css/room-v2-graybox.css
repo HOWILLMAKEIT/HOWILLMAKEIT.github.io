@@ -333,8 +333,39 @@ body.is-ready #room-canvas {
 }
 
 .room-quicknav {
-  display: none;
+  position: fixed;
+  z-index: 6;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+  border: 1px solid var(--line);
+  background: var(--paper-soft);
+  backdrop-filter: blur(12px);
+  box-shadow: 4px 5px 0 rgba(23, 35, 31, 0.08);
 }
+
+.room-quicknav :is(button, a) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.room-quicknav :is(button, a):last-child { border-right: 0; }
+.room-quicknav :is(button, a):hover { background: rgba(95, 127, 112, 0.12); }
+.room-quicknav :is(button, a):focus-visible { outline: 2px solid currentColor; outline-offset: -4px; }
 
 .legend span {
   display: flex;
@@ -429,7 +460,7 @@ body.is-ready .room-loading {
     position: fixed;
     top: auto;
     right: 16px;
-    bottom: 66px;
+    bottom: 110px;
   }
 
   .view-switcher button {
@@ -471,14 +502,15 @@ body.is-ready .room-loading {
     bottom: 10px;
     left: 10px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    transform: none;
     border: 1px solid rgba(23, 35, 31, 0.26);
     background: rgba(248, 246, 239, 0.94);
     box-shadow: 4px 5px 0 rgba(23, 35, 31, 0.08);
     backdrop-filter: blur(12px);
   }
 
-  .room-quicknav button {
+  .room-quicknav :is(button, a) {
     min-width: 0;
     padding: 11px 4px;
     border: 0;
@@ -488,7 +520,7 @@ body.is-ready .room-loading {
     font-size: 10px;
   }
 
-  .room-quicknav button:last-child {
+  .room-quicknav :is(button, a):last-child {
     border-right: 0;
   }
 }
@@ -596,13 +628,13 @@ body.room-night .legend,
 body.room-night .room-panel,
 body.room-night .panel-close,
 body.room-night .room-quicknav,
-body.room-night .room-quicknav button {
+body.room-night .room-quicknav :is(button, a) {
   border-color: rgba(231, 241, 234, 0.46);
 }
 
 body.room-night .view-switcher button,
 body.room-night .view-switcher a,
-body.room-night .room-quicknav button,
+body.room-night .room-quicknav :is(button, a),
 body.room-night .panel-close {
   color: var(--ink);
 }
