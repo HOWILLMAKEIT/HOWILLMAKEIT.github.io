@@ -833,7 +833,7 @@
   outlinedBox("portrait-monitor-neck", [0.08, 0.34, 0.1], [-3.16, 1.16, 2.69], { fill: palette.black, line: lineMaterials.detail });
   outlinedBox("portrait-monitor-base", [0.38, 0.035, 0.56], [-3.15, 1.15, 2.69], { fill: palette.black, line: lineMaterials.soft });
   hitProxy("projects", "科研项目", [-2.96, 1.82, 1.38], [0.45, 1.42, 2.02], "projects");
-  hitProxy("experience", "实习与经历", [-2.96, 1.9, 2.69], [0.45, 1.72, 0.9], "experience");
+  hitProxy("experience", "实习", [-2.96, 1.9, 2.69], [0.45, 1.72, 0.9], "experience");
 
   outlinedBox("keyboard", [0.34, 0.065, 1.08], [-2.48, 1.17, 1.55], { fill: palette.white, line: lineMaterials.detail });
   for (let z = 1.12; z <= 1.98; z += 0.14) {
@@ -1186,24 +1186,30 @@
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     setRoomNight(savedTheme ? savedTheme === "dark" : prefersDark, false);
   }
-  let siteData = { posts: [], projects: [], honors: [] };
+  let siteData = { posts: [], profile: {}, contact: [], links: [] };
 
   const objectCopy = {
     blog: { eyebrow: "BOOKSHELF · BLOG", title: "文章与笔记", lead: "好记性不如烂笔头" },
-    projects: { eyebrow: "MAIN MONITOR · PROJECTS", title: "科研项目", lead: "强化学习、智能优化、大模型与 Agent，是我持续投入的主线。" },
-    experience: { eyebrow: "PORTRAIT MONITOR · EXPERIENCE", title: "经历与方向", lead: "从课堂到真实业务，一段一段慢慢来。" },
-    honors: { eyebrow: "THREE BRONZE MEDALS · HONORS", title: "华南理工大学金阳光杯足球赛铜牌 ×3", lead: "五次参加华南理工大学金阳光杯足球赛，三次获得铜牌。" },
-    about: { eyebrow: "MONET · ABOUT ME", title: "关于我", lead: "华南理工大学 · 2023 级本科生" },
+    projects: { eyebrow: "MAIN MONITOR · RESEARCH", title: "科研", lead: "" },
+    experience: { eyebrow: "PORTRAIT MONITOR · INTERNSHIPS", title: "实习", lead: "" },
+    honors: { eyebrow: "THREE BRONZE MEDALS · HONORS", title: "荣誉与服务", lead: "" },
+    about: { eyebrow: "MONET · ABOUT ME", title: "关于我", lead: "" },
     links: { eyebrow: "WINDOW · LINKS", title: "窗外与链接", lead: "从这间房间出发，连接更大的世界。" },
   };
 
-  async function loadSiteData() {
+  function profileTrack(id) {
+    return (siteData.profile.tracks || []).find((track) => track.id === id) || { entries: [] };
+  }
+
+  function loadSiteData() {
     try {
-      const response = await fetch("/", { credentials: "same-origin" });
-      const html = await response.text();
-      const doc = new DOMParser().parseFromString(html, "text/html");
-      const source = doc.getElementById("room-data");
-      if (source) siteData = { ...siteData, ...JSON.parse(source.textContent) };
+      const source = document.getElementById("room-data");
+      if (!source) return;
+      siteData = { ...siteData, ...JSON.parse(source.textContent) };
+      objectCopy.projects.lead = profileTrack("research").description || "";
+      objectCopy.experience.lead = profileTrack("internships").description || "";
+      objectCopy.about.lead = siteData.profile.lead || "";
+      objectCopy.honors.lead = siteData.profile.service || "";
     } catch (error) {
       console.warn("Room content adapter fell back to local links.", error);
     }
@@ -1471,30 +1477,54 @@
     thump(now, 0.09);   // 单次落地声
   }
 
+  function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+    })[char]);
+  }
+
+  function safeURL(value) {
+    if (typeof value !== "string" || /[\s\u0000-\u001f\u007f\\]/.test(value)) return "";
+    if (/^\/(?!\/)/.test(value)) return value;
+    if (!/^(https?:\/\/|mailto:)/i.test(value)) return "";
+    try {
+      const url = new URL(value);
+      if (url.protocol === "mailto:") return url.pathname ? value : "";
+      return url.hostname && !url.username && !url.password ? value : "";
+    } catch (error) {
+      return "";
+    }
+  }
+
   function listMarkup(items, type) {
-    if (!items || items.length === 0) {
+    if (!Array.isArray(items) || items.length === 0) {
       return '<div class="panel-static-item"><strong>内容正在整理</strong><small>可以先从 About Me 或博客继续了解。</small></div>';
     }
-    return `<ul class="panel-list">${items.slice(0, 6).map((item) => {
-      if (typeof item === "string") return `<li><div class="panel-static-item"><strong>${item}</strong></div></li>`;
-      const title = item.title || item.name || "未命名内容";
-      const meta = type === "posts" ? (item.date || "") : (item.tag || item.desc || "");
-      if (!item.url) return `<li><div class="panel-static-item"><strong>${title}</strong>${meta ? `<small>${meta}</small>` : ""}</div></li>`;
-      const external = /^https?:/.test(item.url);
-      return `<li><a href="${item.url}"${external ? ' target="_blank" rel="noopener"' : ""}><strong>${title}${external ? " ↗" : ""}</strong>${meta ? `<small>${meta}</small>` : ""}</a></li>`;
+    return `<ul class="panel-list">${items.map((item) => {
+      if (typeof item === "string") return `<li><div class="panel-static-item"><strong>${escapeHTML(item)}</strong></div></li>`;
+      const title = escapeHTML(item.title || item.name || "未命名内容");
+      const meta = type === "posts" ? item.date : [item.date, item.role, item.venue, item.status, item.tag].filter(Boolean).join(" · ");
+      const summary = item.summary || item.description || item.desc || item.sub;
+      const content = `<strong>${title}</strong>${meta ? `<small>${escapeHTML(meta)}</small>` : ""}${summary ? `<small>${escapeHTML(summary)}</small>` : ""}`;
+      const url = safeURL(item.url);
+      const primary = url
+        ? `<a href="${escapeHTML(url)}"${/^https?:/i.test(url) ? ' target="_blank" rel="noopener noreferrer"' : ""}>${content}</a>`
+        : `<div class="panel-static-item">${content}</div>`;
+      const links = (item.links || []).map((link) => {
+        const href = safeURL(link.url);
+        return href ? `<a href="${escapeHTML(href)}"${/^https?:/i.test(href) ? ' target="_blank" rel="noopener noreferrer"' : ""}>${escapeHTML(link.label)}</a>` : "";
+      }).join("");
+      return `<li>${primary}${links}</li>`;
     }).join("")}</ul>`;
   }
 
   function panelMarkup(id) {
     if (id === "blog") return `${listMarkup(siteData.posts, "posts")}<a class="panel-primary-link" href="/posts/">查看全部文章 →</a>`;
-    if (id === "projects") return `${listMarkup(siteData.projects, "projects")}<a class="panel-primary-link" href="https://github.com/HOWILLMAKEIT">GitHub 项目主页 →</a>`;
-    if (id === "honors") return `${listMarkup(siteData.honors, "honors")}<a class="panel-primary-link" href="/about/">查看完整履历 →</a>`;
-    if (id === "links") {
-      const linkItems = (siteData.links || []).map((item) => `<li><a href="${item.url}"><strong>${item.name}</strong>${item.sub ? `<small>${item.sub}</small>` : ""}</a></li>`).join("");
-      return `<ul class="panel-list">${linkItems}</ul><a class="panel-primary-link"`;
-    }
-    if (id === "experience") return '<ul class="panel-list"><li><div class="panel-static-item"><strong>大型央企 · 校企合作项目</strong><small><span class="experience-meta">2026.07 — 2026.08 · 核心负责人</span><span class="experience-description">面向大型央企内网研发场景，负责仓库级代码审查 Agent 的核心方案设计与工程落地，覆盖 Git Diff 解析、多文件任务调度、工具调用闭环、结构化审查意见生成及离线环境交付；项目已初步部署至企业内网，并投入内部试用。</span></small></div></li><li><div class="panel-static-item"><strong>广州骑士集团 · 算法实习</strong><small><span class="experience-meta">2026.04 — 2026.06 · AI 算法实习生</span><span class="experience-description">服务集团旗下年销超 20 亿元、粉丝超 300 万的头部内衣品牌 <span class="brand-name">LUCKMEEY 幸棉</span>（赵露思代言）：搭建 Benchmark 与 Agent 评测体系，迭代提示词与 Agent 架构，落地 Function Calling 商品推荐 Tool；上线后独立接待率与转化率均显著提升。</span></small></div></li><li><div class="panel-static-item"><strong>未完待续 ……</strong><small>下一段经历正在路上。</small></div></li></ul><a class="panel-primary-link" href="/about/">阅读个人经历 →</a>';
-    return '<ul class="panel-list"><li><div class="panel-static-item"><strong>华南理工大学 · 计算机科学与工程学院</strong><small>网络工程本科 · 2023.09 — 2027.06</small></div></li><li><div class="panel-static-item"><strong>华南理工大学 · 计算机科学与工程学院</strong><small>计算机科学硕士 · 2027.09 — 2030.06</small></div></li><li><div class="panel-static-item"><strong>强化学习 · 智能优化 · LLM 与 Agent</strong></div></li></ul><a class="panel-primary-link" href="/about/">进入 About Me →</a>';
+    if (id === "projects") return `${listMarkup(profileTrack("research").entries)}<a class="panel-primary-link" href="/about/#research">查看科研时间轴 →</a>`;
+    if (id === "experience") return `${listMarkup(profileTrack("internships").entries)}<a class="panel-primary-link" href="/about/#internships">查看实习时间轴 →</a>`;
+    if (id === "honors") return `${listMarkup(siteData.profile.honors)}<a class="panel-primary-link" href="/about/">查看完整履历 →</a>`;
+    if (id === "links") return `${listMarkup(siteData.links)}<a class="panel-primary-link" href="/about/#open-source">查看开源贡献 →</a>`;
+    return `${listMarkup(siteData.profile.education)}${siteData.profile.project ? `<h3>个人项目</h3>${listMarkup([siteData.profile.project])}` : ""}<a class="panel-primary-link" href="/about/">进入 About Me →</a>`;
   }
 
   function openPanel(id) {
@@ -1519,7 +1549,11 @@
 
   function focusObject(id) {
     const item = interactiveObjects.find((entry) => entry.id === id);
-    if (!item) return;
+    if (!item) {
+      // Quick navigation can open a content panel without a matching 3D object.
+      if (objectCopy[id]) openPanel(id);
+      return;
+    }
     if (item.cameraPreset) setCameraPreset(item.cameraPreset, false);
     if (item.interact) {
       if (item.id.includes("window")) {
@@ -1703,7 +1737,11 @@
   resize();
   restoreRoomTheme();
   setCameraPreset("overview", true);
-  loadSiteData();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadSiteData, { once: true });
+  } else {
+    loadSiteData();
+  }
   requestAnimationFrame(render);
   requestAnimationFrame(() => document.body.classList.add("is-ready"));
 }());

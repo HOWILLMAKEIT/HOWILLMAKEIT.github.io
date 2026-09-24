@@ -1,32 +1,7 @@
 {{- /* 线稿书房首页：3D 可交互线稿房间，家具即导航。依赖 /vendor/three 与 /js/room.js，内容数据在下方 room-data JSON 中。 */ -}}
 {{- define "main" -}}
 {{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
-{{- $projects := slice
-      (dict "name" "LDO · 长时序多头 PPO 优化智能体" "tag" "第一作者 - IEEE TEVC（在审）"
-            "desc" "将变量分解、资源分配与优化模式切换建模为长时序决策问题，PPO 智能体在线决定大规模黑盒优化的分解策略（CEC'13 LSGO）。")
-      (dict "name" "LCC · 基于 PPO 的自适应策略调度" "tag" "第二作者 - GECCO 2026 Oral"
-            "desc" "用强化学习替代人工规则选择协同进化分解策略，验证对未见优化问题的跨任务泛化，并与 CMA-ES 结合。"
-            "url" "https://dl.acm.org/doi/10.1145/3795095.3805053")
-      (dict "name" "MetaBox-v2 · MetaBBO 研究与评测平台" "tag" "参与开发 - NeurIPS 2025"
-            "desc" "参与 PPO/RLDAS 基线与自动评测平台开发，支持强化学习优化器的并行训练和跨场景比较。"
-            "url" "https://github.com/MetaEvo/MetaBox")
-      (dict "name" "Sparrow · 轻量级大语言模型" "tag" "独立项目"
-            "desc" "Decoder-only Transformer + MoE（约 196M 参数 / 106M 激活），以有限算力走通 Pretrain → SFT → DPO 全流程，支持 DeepSpeed ZeRO 与 KV Cache。"
-            "url" "https://github.com/HOWILLMAKEIT/Sparrow")
--}}
-{{- $honors := slice
-      "华南理工大学金阳光杯足球赛铜牌 ×3（校园足球赛事）"
-      "国家奖学金 ×2（2023–2024、2024–2025）"
-      "GECCO 2026 Full Paper · Oral（第二作者，已做线上主题汇报）"
-      "「挑战杯」全国大学生课外学术科技作品竞赛 全国二等奖"
-      "亚太杯数学建模二等奖 · MathorCup 华南赛区二等奖"
-      "GPA 3.87 / 专业排名 2/68"
--}}
-{{- $about := dict
-      "lead" "华南理工大学计算机科学与工程学院本科生（网络工程，2023 级），研究强化学习、进化计算与黑盒优化，同时关注大模型训练与 Agent / RAG 的工程落地。"
-      "facts" (slice "强化学习 · PPO / Actor-Critic" "智能优化 · CMA-ES / 协同进化 / LSGO" "大模型 · Pretrain / SFT / DPO / MoE" "Agent & RAG · 工具调用 / 检索问答")
-      "more" "这个书房里的每件东西都是真的：书架上是博客文章，屏幕里是正在跑的实验，窗台上睡着一只猫。"
--}}
+{{- $profile := hugo.Data.profile -}}
 {{- $contact := slice
       (dict "name" "Email" "sub" "1450656923@qq.com" "url" "mailto:1450656923@qq.com")
       (dict "name" "GitHub" "sub" "@HOWILLMAKEIT" "url" "https://github.com/HOWILLMAKEIT")
@@ -81,9 +56,11 @@ main.main{display:block!important;max-width:none!important;width:100%!important;
     </aside>
 
     <nav class="room-quicknav" aria-label="房间内容快捷入口">
+      <a href="/about/#journey">时间地图 ↗</a>
+      <button type="button" data-room-object="experience">实习</button>
+      <button type="button" data-room-object="projects">科研</button>
+      <a href="/about/#open-source">开源贡献 ↗</a>
       <button type="button" data-room-object="blog">博客</button>
-      <button type="button" data-room-object="projects">项目</button>
-      <button type="button" data-room-object="experience">经历</button>
       <button type="button" data-room-object="honors">荣誉</button>
       <button type="button" data-room-object="about">关于</button>
       <button type="button" data-room-object="links">链接</button>
@@ -106,6 +83,6 @@ main.main{display:block!important;max-width:none!important;width:100%!important;
   <script src="/vendor/three/three.min.js"></script>
   <script src="/js/room-v2/graybox.js"></script>
 <script id="room-data" type="application/json">{{- $pd := slice -}}{{- range first 6 $posts -}}{{- $pd = $pd | append (dict "title" .Title "url" .RelPermalink "date" (.Date.Format "2006-01")) -}}{{- end -}}
-{"posts":{{- $pd | jsonify | safeJS -}},"projects":{{- $projects | jsonify | safeJS -}},"honors":{{- $honors | jsonify | safeJS -}},"about":{{- $about | jsonify | safeJS -}},"contact":{{- $contact | jsonify | safeJS -}},"links":{{- $links | jsonify | safeJS -}}}
+{{- dict "posts" $pd "profile" $profile "contact" $contact "links" $links | jsonify | safeJS -}}
 </script>
 {{- end -}}

@@ -2,7 +2,8 @@
 title: "关于"
 date: 2026-07-12
 draft: false
-description: "关于郭昊：教育经历、科研与实习、兴趣爱好"
+description: "郭昊的个人主页：实习、科研、开源贡献三条时间轴，以及教育背景、个人项目与学术服务。"
+lastmod: 2026-09-23
 type: page
 layout: about
 ---

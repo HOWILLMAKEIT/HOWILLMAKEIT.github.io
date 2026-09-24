@@ -1,0 +1,45 @@
+<section id="{{ .id }}" class="timeline-section profile-track" aria-labelledby="{{ .id }}-title">
+  <header class="section-heading">
+    <div><p class="section-kicker">{{ .eyebrow }}</p><h2 id="{{ .id }}-title">{{ .title }}</h2></div>
+    <p>{{ .description }}</p>
+  </header>
+  <ol class="timeline" aria-label="{{ .title }}时间轴">
+    {{- range .entries }}
+    <li class="timeline-item" id="{{ .id }}">
+      <div class="timeline-date">{{ .date }}</div>
+      <div class="timeline-marker" aria-hidden="true"></div>
+      <article class="timeline-content">
+        <h3>{{ .title }}</h3>
+        <p class="profile-entry-meta"><strong>{{ .role }}</strong>{{ with .venue }}<span class="profile-venue">{{ . }}</span>{{ end }}<span class="profile-entry-status">{{ .status }}</span></p>
+        <p class="profile-entry-summary">{{ .summary }}</p>
+        {{- with .details }}
+        <ul class="profile-entry-details">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+        {{- end }}
+        {{- with .tags }}
+        <ul class="profile-entry-tags" aria-label="技术关键词">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+        {{- end }}
+        {{- with .metrics }}
+        <ul class="profile-metrics" aria-label="效果提升">
+          {{- range . }}<li><strong>{{ .value }}</strong><span>{{ .label }}</span></li>{{- end }}
+        </ul>
+        {{- end }}
+        {{- with .result }}<p class="profile-entry-result">{{ . }}</p>{{- end }}
+        {{- with .links }}
+        <div class="profile-entry-links">
+          {{- range . }}
+          <a href="{{ .url }}"{{ if hasPrefix .url "https://" }} target="_blank" rel="noopener"{{ end }}>{{ .label }}{{ if hasPrefix .url "https://" }} ↗{{ else }} →{{ end }}</a>
+          {{- end }}
+        </div>
+        {{- end }}
+      </article>
+    </li>
+    {{- end }}
+  </ol>
+  {{- if eq .id "research" }}
+  <aside class="profile-service" aria-labelledby="service-title">
+    <p class="section-kicker">ACADEMIC SERVICE</p>
+    <h3 id="service-title">学术服务</h3>
+    <p>{{ hugo.Data.profile.service }}</p>
+  </aside>
+  {{- end }}
+</section>

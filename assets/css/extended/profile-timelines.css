@@ -1,0 +1,173 @@
+/* Resume-aligned profile: three separate timelines, shared with the room data. */
+.about-home {
+  --profile-blue: #245c83;
+  --profile-blue-soft: #edf4f8;
+}
+[data-theme="dark"] .about-home {
+  --profile-blue: #9ac9eb;
+  --profile-blue-soft: #1e2b34;
+}
+.about-home .hero-lead { font-family: inherit; }
+.about-home .profile-room-link {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--about-accent);
+  font-size: 0.78rem;
+  text-underline-offset: 4px;
+}
+.about-home .education-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.about-home .education-card {
+  padding: 20px;
+  border: 1.5px solid var(--about-ink);
+  border-radius: 4px 12px 5px 10px;
+  background: var(--about-paper);
+}
+.about-home .education-card h3 {
+  margin: 10px 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.about-home .education-card p {
+  margin: 0;
+  color: var(--about-muted);
+  font-size: 0.78rem;
+  line-height: 1.8;
+}
+.about-home .education-date span {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--profile-blue);
+  font-weight: 700;
+}
+.about-home .profile-track-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 40px;
+}
+.about-home .profile-track-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  border: 1.5px solid var(--about-ink);
+  border-radius: 10px 3px 9px 4px;
+  background: var(--about-paper);
+  color: var(--about-ink);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+.about-home .profile-track-nav a span { color: var(--profile-blue); font-size: 0.75rem; }
+.about-home .profile-track-nav a span:last-child { margin-left: auto; }
+.about-home .profile-track-nav a:hover { background: var(--profile-blue-soft); }
+.about-home .profile-track,
+.about-home .timeline-item { scroll-margin-top: 28px; }
+.about-home .profile-track .timeline::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 112px;
+  width: 2px;
+  background: var(--line);
+}
+.about-home .profile-track .timeline-marker { position: relative; }
+.about-home .profile-track .timeline-marker::before,
+.about-home .profile-track .timeline-marker::after { content: none; }
+.about-home .profile-track .timeline-item:last-child .timeline-content {
+  padding-bottom: 22px;
+  border-bottom: var(--about-line);
+}
+.about-home a:focus-visible { outline: 3px solid var(--profile-blue); outline-offset: 5px; }
+.about-home .profile-track .timeline-content h3 {
+  margin: 0 0 12px;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+.about-home .profile-entry-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  margin: 0 0 5px;
+  font-size: 0.76rem;
+}
+.about-home .profile-entry-meta strong { color: var(--about-ink); }
+.about-home .profile-entry-meta .profile-venue { color: var(--profile-blue); font-weight: 700; }
+.about-home .profile-entry-status { font-size: 0.76rem; }
+.about-home .profile-entry-summary { margin-top: 16px; }
+.about-home .profile-track .timeline-content p,
+.about-home .profile-project-card p { line-height: 1.8; }
+.about-home .profile-entry-details {
+  margin: 12px 0 0;
+  padding-left: 1.15em;
+  color: var(--about-muted);
+  font-size: 0.83rem;
+  line-height: 1.9;
+}
+.about-home .profile-entry-details li + li { margin-top: 8px; }
+.about-home .profile-entry-tags,
+.about-home .profile-metrics { list-style: none; padding: 0; }
+.about-home .profile-entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 0;
+}
+.about-home .profile-entry-tags li {
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--about-accent);
+  background: var(--about-soft);
+  font-size: 0.7rem;
+}
+.about-home .profile-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  margin: 20px 0 12px;
+}
+.about-home .profile-metrics li {
+  padding: 12px;
+  border-left: 3px solid var(--profile-blue);
+  background: var(--profile-blue-soft);
+}
+.about-home .profile-metrics strong { display: block; color: var(--profile-blue); font-size: 1rem; }
+.about-home .profile-metrics span { display: block; margin-top: 4px; color: var(--about-muted); font-size: 0.68rem; line-height: 1.6; }
+.about-home .profile-entry-result { font-size: 0.75rem; }
+.about-home .profile-entry-links { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 18px; }
+.about-home .profile-entry-links a { color: var(--profile-blue); font-size: 0.78rem; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.about-home .profile-snapshot { color: var(--about-muted); font-size: 0.68rem; line-height: 1.8; }
+.about-home .profile-project-section { margin-top: 58px; }
+.about-home .profile-project-card {
+  padding: 26px;
+  border: var(--about-line);
+  border-radius: var(--about-radius);
+  background: var(--about-paper);
+  box-shadow: var(--about-shadow);
+}
+.about-home .profile-project-card h3 { margin: 12px 0; font-size: 1.1rem; }
+.about-home .profile-project-card p { color: var(--about-muted); font-size: 0.85rem; }
+.about-home .profile-service { margin: 12px 0 0 138px; padding: 22px 26px; border-left: 3px solid var(--profile-blue); background: var(--about-paper); }
+.about-home .profile-service h3 { margin: 8px 0 12px; font-size: 1.2rem; }
+.about-home .profile-service p:last-child { color: var(--about-muted); font-size: 0.84rem; line-height: 1.8; }
+@media (max-width: 760px) {
+  .about-home .profile-track .timeline::before { left: 7px; top: 10px; }
+  .about-home .profile-service { margin-left: 28px; padding: 18px; }
+  .about-home .education-grid { grid-template-columns: 1fr; }
+  .about-home .profile-track-nav { gap: 8px; }
+  .about-home .profile-track-nav a { flex-wrap: wrap; gap: 4px 8px; padding: 12px 8px; font-size: 0.78rem; }
+  .about-home .profile-track-nav a span:last-child { display: none; }
+  .about-home .profile-track .timeline-content h3 { font-size: 1rem; }
+  .about-home .profile-metrics { grid-template-columns: minmax(0, 1fr); }
+  .about-home .profile-project-card { padding: 20px; }
+  .about-home .profile-entry-links { gap: 12px 16px; }
+}

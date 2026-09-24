@@ -1,0 +1,49 @@
+{{- $entries := dict -}}
+{{- range .education -}}{{- $entries = merge $entries (dict .id .) -}}{{- end -}}
+{{- range .tracks -}}
+  {{- range .entries -}}{{- $entries = merge $entries (dict .id .) -}}{{- end -}}
+{{- end -}}
+{{- with .project -}}{{- $entries = merge $entries (dict .id .) -}}{{- end -}}
+<section id="journey" class="journey-section" aria-labelledby="journey-title">
+  <div class="journey-header">
+    <div>
+      <p class="section-kicker">CAREER &amp; RESEARCH / INTERACTIVE TIMELINE</p>
+      <h2 id="journey-title">科研与项目时间轴</h2>
+      <p>一行一个学年，横轴为 9 月至次年 8 月。点击彩色区间，查看对应经历。</p>
+    </div>
+    <span class="journey-years-range">2023 — 2027</span>
+  </div>
+  <ul class="journey-legend" aria-label="颜色说明">
+    <li class="journey-research">优化算法 / 科研</li><li class="journey-project">大模型 / Agent</li>
+    <li class="journey-internships">实习</li><li class="journey-open-source">开源贡献</li>
+    <li class="journey-education">课程学习</li><li class="journey-background">阶段背景</li>
+  </ul>
+  <p class="journey-scroll-hint">← 左右滑动，查看完整月份与项目 →</p>
+  <div class="journey-viewport" role="region" aria-label="按学年排列的可横向滚动项目时间轴" tabindex="0">
+    <ol class="journey-years">
+      {{- range .journey.years }}
+      <li class="journey-year">
+        <div class="journey-year-label"><strong>{{ .label }}</strong><span>{{ .range }}</span></div>
+        <div class="journey-axis" style="{{ printf "--lanes:%d" (int .lanes) | safeCSS }}">
+          {{- range .events }}
+          {{- $period := .period -}}
+          {{- if not $period }}{{ $period = (index $entries .ref).date }}{{ end -}}
+          {{- $span := sub .end .start -}}
+          {{- if not .endAtStart }}{{ $span = add $span 1 }}{{ end -}}
+          <a class="journey-event journey-{{ .kind }}{{ if ge .start 10 }} journey-event--right{{ end }}{{ if .ongoing }} journey-event--ongoing{{ end }}" href="#{{ .ref }}" style="{{ printf "--from:%d;--span:%d;--lane:%d" (int (sub .start 1)) (int $span) (int .lane) | safeCSS }}" aria-label="{{ .label }}，{{ $period }}；查看详细介绍">
+            <span class="journey-event-label"><strong>{{ .label }}</strong><small>{{ .caption }}</small></span>
+            <span class="journey-bar" aria-hidden="true"></span>
+          </a>
+          {{- end }}
+          <div class="journey-line" aria-hidden="true"></div>
+          <div class="journey-ticks" aria-hidden="true">
+            <span style="--tick:0">9月</span><span style="--tick:3">12月</span>
+            <span style="--tick:6">3月</span><span style="--tick:9">6月</span><span style="--tick:11">8月</span>
+          </div>
+        </div>
+      </li>
+      {{- end }}
+    </ol>
+  </div>
+  <p class="journey-note">色条表示主要投入期；骑士集团画至 6 月 30 日，南网从 7 月接续。具体日期与进展见项目详情。</p>
+</section>

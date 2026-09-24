@@ -1,0 +1,141 @@
+{
+  "updated": "2026-09-23",
+  "githubSnapshot": "2026-09-21",
+  "lead": "华南理工大学网络工程本科生，计算机科学硕士拟录取。研究强化学习、进化计算与黑盒优化，也将大模型与 Agent 用于真实业务。",
+  "education": [
+    {"id": "masters", "title": "华南理工大学 · 计算机科学硕士", "date": "2027.09 — 2030.06", "status": "拟录取", "description": "计算机科学与工程学院 · 强化学习与智能优化方向"},
+    {"id": "undergraduate", "title": "华南理工大学 · 网络工程本科", "date": "2023.09 — 2027.06", "status": "在读", "description": "GPA 3.87 · 均分 90.6 · 班级排名 2/63 · 连续两学年国家奖学金"}
+  ],
+  "tracks": [
+    {
+      "id": "internships", "title": "实习", "eyebrow": "01 / INDUSTRY", "description": "从业务问题出发，完成 Agent 设计、评测与工程交付。",
+      "entries": [
+        {
+          "id": "csg", "date": "2026.07 — 2026.08", "title": "南方电网 · 代码审查 Agent", "role": "算法实习生", "venue": "校企合作", "status": "企业内网初步部署与试用",
+          "summary": "面向代码准入前的安全与质量审查，负责仓库级代码审查 Agent Glass-box 的核心设计与开发。",
+          "details": [
+            "双层审查：先逐代码块无工具快扫，再对疑难问题调用工具深度审查；结合 Git Diff 解析、多文件调度与关联代码检索，通过评论锚点优化、变更区间扩展和保守去重，输出结构化行内评论。",
+            "误报反馈：将用户反馈沉淀为项目级与全局记忆，结合问题指纹、文件范围及文本相似度抑制重复误报；支持记忆启停、置顶、共享信任控制及可选的 LLM 二次复核。",
+            "工程交付：开发 FastAPI + React Web 端及 CLI，支持模型配置、变更预览、审查进度推送、行内评论与反馈管理；完成企业内网初步部署和内部试用。"
+          ],
+          "metrics": [
+            {"value": "19.2% → 23.2%", "label": "语义 F1 · +4.0pp"},
+            {"value": "13.0% → 22.7%", "label": "Recall"}
+          ],
+          "result": "AACR-Bench 196 条变更离线评测；F1 较 Open Code Review + GLM-5.2 官方公布成绩 21.3% 高 1.9pp。",
+          "links": [{"label": "OCR 官方基准", "url": "https://github.com/alibaba/open-code-review#benchmark"}]
+        },
+        {
+          "id": "knight", "date": "2026.04 — 2026.06.30", "title": "广州骑士集团 · 电商 AI 客服", "role": "AI 算法实习生", "venue": "LUCKMEEY 幸棉", "status": "生产业务",
+          "summary": "服务年销超 20 亿元、全网粉丝超 300 万的品牌 LUCKMEEY 幸棉，参与淘宝、抖音商城 AI 客服开发。",
+          "details": [
+            "Agent 链路：推动“意图分类 → Prompt 回复”向“场景粗筛 → Agent 决策 → Tool 执行”迁移，支持模型动态注入、账号级新旧链路分流与工具调用追踪；上线后 AI 独立接待率提升约 7pp，客服转化率提升约 5pp。",
+            "模型评测：搭建覆盖 10+ 主流 LLM 的流水线，支持批量推理、断点续跑、LLM-as-Judge 评测及延迟、成本统计；通过分层场景评测、混淆分析与 Prompt 迭代，将意图识别准确率从 80.41% 提升至 86.49%。",
+            "商品推荐：实现 Function Calling 推荐工具，从会话日志整理 736 条“用户表达 → 标准属性”映射，结合领域分词、Embedding 查询扩展、尺码硬约束与加权重排序；在 89 条人工质检样本上，Hit@5 从 25.49% 提升至约 89%。"
+          ],
+          "metrics": [
+            {"value": "+7pp / +5pp", "label": "独立接待率 / 客服转化率"},
+            {"value": "80.41% → 86.49%", "label": "意图识别准确率"},
+            {"value": "25.49% → 约 89%", "label": "推荐 Hit@5 · 89 条质检样本"}
+          ],
+          "links": [{"label": "LUCKMEEY 官网", "url": "https://luckmeey.cn/"}]
+        }
+      ]
+    },
+    {
+      "id": "research", "title": "科研", "eyebrow": "02 / RESEARCH", "description": "用强化学习学习决策，用大模型探索算法设计。",
+      "entries": [
+        {
+          "id": "meta2", "date": "进行中", "title": "Meta²: Discovering Conditional Advantages in Learned Black-Box Optimization", "role": "共同第一作者", "venue": "", "status": "在研，尚未投稿",
+          "summary": "构建大模型驱动的强化学习算法自动设计框架，通过训练评测反馈迭代候选算法，探索跨任务泛化能力。",
+          "tags": ["LLM", "强化学习", "自动算法设计"]
+        },
+        {
+          "id": "ldo", "date": "修改中", "title": "Learning to Decompose during Optimization: Efficient Cooperative Coevolution for Large-Scale Global Optimization", "role": "共同第一作者", "venue": "IEEE TEVC · 中科院一区 TOP", "status": "一轮审稿后修改中",
+          "summary": "基于 PPO 在优化过程中动态调整变量分组、资源分配与优化策略；结合低成本局部探测和边优化边分解，在减少函数评估开销的同时，提高分组准确率与最终优化效果。",
+          "tags": ["PPO", "序贯决策", "大规模黑盒优化"]
+        },
+        {
+          "id": "lcc", "date": "2026.07.17", "title": "Advancing CMA-ES with Learning-Based Cooperative Coevolution for Scalable Optimization", "role": "第二作者", "venue": "GECCO 2026 · CCF-C · Full Paper", "status": "已录用，已完成 Oral 汇报",
+          "summary": "基于强化学习 PPO 训练策略调度智能体，替代人工规则选择分解策略，并验证跨任务泛化能力。",
+          "tags": ["PPO", "策略调度", "跨任务泛化"],
+          "links": [
+            {"label": "ACM 论文", "url": "https://dl.acm.org/doi/10.1145/3795095.3805053"},
+            {"label": "方法解读", "url": "/posts/lcc-learning-based-cooperative-coevolution/"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "open-source", "title": "开源贡献", "eyebrow": "03 / OPEN SOURCE", "description": "把工程实践中的改进，贡献回开源社区。",
+      "entries": [
+        {
+          "id": "ocr", "date": "2026.08 — 2026.09", "title": "Alibaba Open Code Review", "role": "贡献者", "venue": "38.7k Stars", "status": "4 个 PR 全部合并",
+          "summary": "为仓库级代码审查工具贡献近 1,000 行代码，位列 GitHub 贡献者列表第 25 / 181 位。",
+          "details": ["修复审查任务中断后结果未保存、无法续跑及退出卡死等问题，完善任务取消与 MCP 子进程回收机制，补充异常场景回归测试。"],
+          "links": [
+            {"label": "GitHub", "url": "https://github.com/alibaba/open-code-review"},
+            {"label": "PR #1110", "url": "https://github.com/alibaba/open-code-review/pull/1110"},
+            {"label": "PR #1111", "url": "https://github.com/alibaba/open-code-review/pull/1111"},
+            {"label": "PR #1183", "url": "https://github.com/alibaba/open-code-review/pull/1183"},
+            {"label": "PR #1185", "url": "https://github.com/alibaba/open-code-review/pull/1185"}
+          ]
+        },
+        {
+          "id": "metabox", "date": "2025.05 — 2025.06", "title": "MetaBox · 元黑盒优化基准平台", "role": "贡献者", "venue": "175 Stars · NeurIPS 2023 / 2025", "status": "10 次 commit 合入 v2.0.0 主分支",
+          "summary": "编写 v2 全部 18 个问题集的划分说明并参与 ReadTheDocs 文档站建设；另提交 lsgo-torch 的 4 处 NumPy / PyTorch 兼容性修复及回归测试。",
+          "links": [
+            {"label": "GitHub", "url": "https://github.com/MetaEvo/MetaBox"},
+            {"label": "文档站", "url": "https://metabox.readthedocs.io/"},
+            {"label": "兼容性修复 PR #13", "url": "https://github.com/MetaEvo/MetaBox/pull/13"}
+          ]
+        }
+      ]
+    }
+  ],
+  "project": {
+    "id": "sparrow", "date": "2026.02 — 2026.04", "title": "Sparrow · 轻量级大语言模型", "role": "独立开发",
+    "summary": "基于原生 PyTorch 实现 Decoder-only Transformer（RoPE、GQA）与 MoE，打通 Pretrain → SFT → DPO，支持 DeepSpeed ZeRO-2、断点恢复与权重转换。",
+    "metrics": [
+      {"value": "196M / 106M", "label": "总参数 / 激活参数"},
+      {"value": "36.5×", "label": "KV Cache 测试生成提速"}
+    ],
+    "description": "每题生成 8 个候选，由 Reward Model 筛选偏好对并评测三阶段模型；测试生成速度由 4.59 提升至 167.50 tokens/s。",
+    "url": "https://github.com/HOWILLMAKEIT/Sparrow"
+  },
+  "journey": {
+    "years": [
+      {"label": "大一", "range": "2023.09—2024.08", "lanes": 1, "events": [
+        {"ref": "undergraduate", "label": "课程学习与基础积累", "caption": "2023.09—2024.08 · 本科基础", "period": "2023.09—2024.08", "kind": "education", "start": 1, "end": 12, "lane": 1}
+      ]},
+      {"label": "大二", "range": "2024.09—2025.08", "lanes": 2, "events": [
+        {"ref": "undergraduate", "label": "课程学习与基础积累", "caption": "2024.09—2025.02 · 专业课程", "period": "2024.09—2025.02", "kind": "education", "start": 1, "end": 6, "lane": 1},
+        {"ref": "research", "label": "加入课题组 · 开始科研", "caption": "大二下 · 科研起步", "period": "大二下 · 阶段示意", "kind": "background", "start": 7, "end": 12, "lane": 1},
+        {"ref": "metabox", "label": "MetaBox 开源贡献", "caption": "2025.05—06 · 平台文档 / 10 次提交", "kind": "open-source", "start": 9, "end": 10, "lane": 2}
+      ]},
+      {"label": "大三", "range": "2025.09—2026.08", "lanes": 5, "events": [
+        {"ref": "lcc", "label": "LCC-CMAES", "caption": "2025.10—26.01 · 第二作者 · GECCO Oral", "period": "2025.10—2026.01 · 主要投入", "kind": "research", "start": 2, "end": 5, "lane": 1},
+        {"ref": "ldo", "label": "LDO · 边优化边分解", "caption": "2026.01—06 · 共同一作 · 投稿至 IEEE TEVC", "period": "2026.01—2026.06 · 主要投入", "kind": "research", "start": 5, "end": 10, "lane": 2},
+        {"ref": "sparrow", "label": "Sparrow · 大模型训练", "caption": "2026.02—04 · 独立开发", "kind": "project", "start": 6, "end": 8, "lane": 3},
+        {"ref": "knight", "label": "骑士集团 · AI 客服", "caption": "2026.04—06.30 · AI 算法实习", "period": "2026.04—2026.06.30", "kind": "internships", "start": 8, "end": 11, "endAtStart": true, "lane": 4},
+        {"ref": "csg", "label": "南方电网 · 代码审查 Agent", "caption": "2026.07—08 · 算法实习", "kind": "internships", "start": 11, "end": 12, "lane": 4},
+        {"ref": "lcc", "label": "GECCO 2026 · Oral 汇报", "caption": "2026.07 · 第二作者", "period": "2026.07 · 成果节点", "kind": "research", "start": 11, "end": 11, "lane": 1},
+        {"ref": "ocr", "label": "Open Code Review · 4 个 PR", "caption": "2026.08—09 · 4 个 PR 合并", "period": "2026.08—09 · 跨学年", "kind": "open-source", "start": 12, "end": 12, "lane": 5}
+      ]},
+      {"label": "大四", "range": "2026.09—2027.08", "lanes": 2, "events": [
+        {"ref": "meta2", "label": "Meta² · 自动算法设计", "caption": "2026.09 起 · 共同一作 · 在研", "period": "2026.09 起 · 在研", "kind": "research", "start": 1, "end": 1, "lane": 1, "ongoing": true},
+        {"ref": "ocr", "label": "Open Code Review · PR 合并", "caption": "2026.09 · 4 个 PR 合并", "period": "2026.09 · 延续上学年", "kind": "open-source", "start": 1, "end": 1, "lane": 2}
+      ]}
+    ],
+    "undated": []
+  },
+  "service": "受邀担任 IEEE Transactions on Evolutionary Computation（TEVC，中科院一区 TOP）期刊审稿人。",
+  "honors": [
+    "连续两学年国家奖学金（2023–2024、2024–2025）",
+    "GPA 3.87 · 均分 90.6 · 班级排名 2/63",
+    "GECCO 2026（CCF-C）Full Paper · Oral（第二作者）",
+    "IEEE TEVC（中科院一区 TOP）期刊审稿人",
+    "“挑战杯”全国二等奖 · 亚太杯数学建模二等奖",
+    "华南理工大学校园足球赛事铜牌 ×3"
+  ]
+}
