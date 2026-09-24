@@ -64,6 +64,7 @@ def main():
     targets.add(profile["project"]["id"])
     targets.update(entry["id"] for track in profile["tracks"] for entry in track["entries"])
     targets.update(track_ids)
+    targets.add("service-title")
     assert [year["label"] for year in journey["years"]] == [
         "大一", "大二", "大三", "大四"
     ]
@@ -94,6 +95,10 @@ def main():
     assert internships["knight"]["date"].endswith("2026.06.30")
     assert internships["csg"]["date"] == "2026.07 — 2026.08"
     assert any(event["ref"] == "meta2" and event["start"] == 1 for event in senior["events"])
+    reviewer = next(event for event in senior["events"] if event["ref"] == "service-title")
+    assert reviewer["start"] == reviewer["end"] == 1 and reviewer["point"]
+    assert reviewer["caption"] == "2026.09.15"
+    assert "2026.09.15" in profile["service"]
     events = [event for year in journey["years"] for event in year["events"]]
     events.extend(journey["undated"])
     for event in events:

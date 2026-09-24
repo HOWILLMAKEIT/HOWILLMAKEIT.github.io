@@ -122,14 +122,15 @@
         {"ref": "lcc", "label": "GECCO 2026 · Oral 汇报", "caption": "2026.07 · 第二作者", "period": "2026.07 · 成果节点", "kind": "research", "start": 11, "end": 11, "lane": 1},
         {"ref": "ocr", "label": "Open Code Review · 4 个 PR", "caption": "2026.08—09 · 4 个 PR 合并", "period": "2026.08—09 · 跨学年", "kind": "open-source", "start": 12, "end": 12, "lane": 5}
       ]},
-      {"label": "大四", "range": "2026.09—2027.08", "lanes": 2, "events": [
+      {"label": "大四", "range": "2026.09—2027.08", "lanes": 3, "events": [
         {"ref": "meta2", "label": "Meta² · 自动算法设计", "caption": "2026.09 起 · 共同一作 · 在研", "period": "2026.09 起 · 在研", "kind": "research", "start": 1, "end": 1, "lane": 1, "ongoing": true},
-        {"ref": "ocr", "label": "Open Code Review · PR 合并", "caption": "2026.09 · 4 个 PR 合并", "period": "2026.09 · 延续上学年", "kind": "open-source", "start": 1, "end": 1, "lane": 2}
+        {"ref": "ocr", "label": "Open Code Review · PR 合并", "caption": "2026.09 · 4 个 PR 合并", "period": "2026.09 · 延续上学年", "kind": "open-source", "start": 1, "end": 1, "lane": 2},
+        {"ref": "service-title", "label": "IEEE TEVC · 受邀审稿", "caption": "2026.09.15", "period": "2026.09.15 · 已接受审稿邀请", "kind": "service", "start": 1, "end": 1, "lane": 3, "point": true}
       ]}
     ],
     "undated": []
   },
-  "service": "受邀担任 IEEE Transactions on Evolutionary Computation（TEVC，中科院一区 TOP）期刊审稿人。",
+  "service": "2026.09.15 接受 IEEE Transactions on Evolutionary Computation（TEVC）期刊审稿邀请。",
   "honors": [
     "连续两学年国家奖学金（2023–2024、2024–2025）",
     "GPA 3.87 · 均分 90.6 · 班级排名 2/63",
