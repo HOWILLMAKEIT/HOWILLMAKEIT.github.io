@@ -105,30 +105,195 @@
   },
   "journey": {
     "years": [
-      {"label": "大一", "range": "2023.09—2024.08", "lanes": 1, "events": [
-        {"ref": "undergraduate", "label": "课程学习与基础积累", "caption": "2023.09—2024.08 · 本科基础", "period": "2023.09—2024.08", "kind": "education", "start": 1, "end": 12, "lane": 1}
-      ]},
-      {"label": "大二", "range": "2024.09—2025.08", "lanes": 2, "events": [
-        {"ref": "undergraduate", "label": "课程学习与基础积累", "caption": "2024.09—2025.02 · 专业课程", "period": "2024.09—2025.02", "kind": "education", "start": 1, "end": 6, "lane": 1},
-        {"ref": "research", "label": "加入课题组 · 开始科研", "caption": "大二下 · 科研起步", "period": "大二下 · 阶段示意", "kind": "background", "start": 7, "end": 12, "lane": 1},
-        {"ref": "metabox", "label": "MetaBox 开源贡献", "caption": "2025.05—06 · 平台文档 / 10 次提交", "kind": "open-source", "start": 9, "end": 10, "lane": 2}
-      ]},
-      {"label": "大三", "range": "2025.09—2026.08", "lanes": 5, "events": [
-        {"ref": "lcc", "label": "LCC-CMAES", "caption": "2025.10—26.01 · 第二作者 · GECCO Oral", "period": "2025.10—2026.01 · 主要投入", "kind": "research", "start": 2, "end": 5, "lane": 1},
-        {"ref": "ldo", "label": "LDO · 边优化边分解", "caption": "2026.01—06 · 共同一作 · 投稿至 IEEE TEVC", "period": "2026.01—2026.06 · 主要投入", "kind": "research", "start": 5, "end": 10, "lane": 2},
-        {"ref": "sparrow", "label": "Sparrow · 大模型训练", "caption": "2026.02—04 · 独立开发", "kind": "project", "start": 6, "end": 8, "lane": 3},
-        {"ref": "knight", "label": "骑士集团 · AI 客服", "caption": "2026.04—06.30 · AI 算法实习", "period": "2026.04—2026.06.30", "kind": "internships", "start": 8, "end": 11, "endAtStart": true, "lane": 4},
-        {"ref": "csg", "label": "南方电网 · 代码审查 Agent", "caption": "2026.07—08 · 算法实习", "kind": "internships", "start": 11, "end": 12, "lane": 4},
-        {"ref": "lcc", "label": "GECCO 2026 · Oral 汇报", "caption": "2026.07 · 第二作者", "period": "2026.07 · 成果节点", "kind": "research", "start": 11, "end": 11, "lane": 1},
-        {"ref": "ocr", "label": "Open Code Review · 4 个 PR", "caption": "2026.08—09 · 4 个 PR 合并", "period": "2026.08—09 · 跨学年", "kind": "open-source", "start": 12, "end": 12, "lane": 5}
-      ]},
-      {"label": "大四", "range": "2026.09—2027.08", "lanes": 3, "events": [
-        {"ref": "ongoing-research", "label": "在研项目 · 智能优化", "caption": "2026.09 起 · 共同一作 · 在研", "period": "2026.09 起 · 在研", "kind": "research", "start": 1, "end": 1, "lane": 1, "ongoing": true},
-        {"ref": "ocr", "label": "Open Code Review · PR 合并", "caption": "2026.09 · 4 个 PR 合并", "period": "2026.09 · 延续上学年", "kind": "open-source", "start": 1, "end": 1, "lane": 2},
-        {"ref": "service-title", "label": "IEEE TEVC · 受邀审稿", "caption": "2026.09.15", "period": "2026.09.15 · 已接受审稿邀请", "kind": "service", "start": 1, "end": 1, "lane": 3, "point": true}
-      ]}
+      {
+        "label": "大一",
+        "range": "2023.09—2024.08",
+        "events": [
+          {
+            "ref": "undergraduate",
+            "label": "华南理工 · 网络工程入学",
+            "caption": "本科在读 · 网络工程",
+            "period": "2023.09",
+            "kind": "education",
+            "start": 1,
+            "end": 1,
+            "point": true,
+            "lane": 1
+          }
+        ],
+        "chapter": "起点"
+      },
+      {
+        "label": "大二",
+        "range": "2024.09—2025.08",
+        "events": [
+          {
+            "ref": "research",
+            "label": "加入 MetaEvo 实验室",
+            "caption": "开始强化学习与智能优化研究",
+            "period": "2025.04.15",
+            "kind": "research",
+            "start": 8,
+            "end": 8,
+            "point": true,
+            "day": 15,
+            "lane": 1
+          },
+          {
+            "ref": "metabox",
+            "label": "MetaBox 开源贡献",
+            "caption": "10 次 commit 合入 v2.0.0",
+            "kind": "open-source",
+            "start": 9,
+            "end": 10,
+            "period": "2025.05 — 2025.06",
+            "lane": 2
+          }
+        ],
+        "chapter": "科研起步"
+      },
+      {
+        "label": "大三",
+        "range": "2025.09—2026.08",
+        "events": [
+          {
+            "ref": "lcc",
+            "label": "LCC-CMAES",
+            "caption": "第二作者 · GECCO 2026 Full Paper",
+            "period": "2025.10 — 2026.01",
+            "kind": "research",
+            "start": 2,
+            "end": 5,
+            "milestones": [
+              {
+                "month": 7,
+                "day": 20,
+                "label": "录用",
+                "date": "2026.03.20"
+              },
+              {
+                "month": 11,
+                "day": 17,
+                "label": "Oral",
+                "date": "2026.07.17"
+              }
+            ],
+            "lane": 1
+          },
+          {
+            "ref": "ldo",
+            "label": "LDO · 边优化边分解",
+            "caption": "共同第一作者 · IEEE TEVC 一轮修改中",
+            "period": "2026.01 — 2026.06",
+            "kind": "research",
+            "start": 5,
+            "end": 10,
+            "lane": 2
+          },
+          {
+            "ref": "sparrow",
+            "label": "Sparrow · 大模型训练",
+            "caption": "独立开发 · Pretrain → SFT → DPO",
+            "kind": "project",
+            "start": 6,
+            "end": 8,
+            "period": "2026.02 — 2026.04",
+            "lane": 3
+          },
+          {
+            "ref": "knight",
+            "label": "骑士集团",
+            "caption": "AI 客服 · 算法实习",
+            "period": "2026.04 — 2026.06.30",
+            "kind": "internships",
+            "start": 8,
+            "end": 11,
+            "endAtStart": true,
+            "lane": 4,
+            "shared": true
+          },
+          {
+            "ref": "csg",
+            "label": "南方电网",
+            "caption": "代码审查 Agent · 算法实习",
+            "kind": "internships",
+            "start": 11,
+            "end": 12,
+            "period": "2026.07 — 2026.08",
+            "lane": 4,
+            "shared": true
+          },
+          {
+            "ref": "ocr",
+            "label": "Open Code Review",
+            "caption": "开源贡献 · 延续至下一学年",
+            "period": "2026.08 — 2026.09",
+            "kind": "open-source",
+            "start": 12,
+            "end": 12,
+            "continues": true,
+            "lane": 5
+          }
+        ],
+        "chapter": "研究与实践"
+      },
+      {
+        "label": "大四",
+        "range": "2026.09—2027.08",
+        "events": [
+          {
+            "ref": "ongoing-research",
+            "label": "在研项目 · 智能优化",
+            "caption": "共同第一作者 · 在研，尚未投稿",
+            "period": "2026.09 — 至今",
+            "kind": "research",
+            "start": 1,
+            "end": 2,
+            "ongoing": true,
+            "lane": 1
+          },
+          {
+            "ref": "ocr",
+            "label": "Open Code Review",
+            "caption": "4 个 PR 全部合并 · 约 1,000 行",
+            "period": "2026.08 — 2026.09",
+            "kind": "open-source",
+            "start": 1,
+            "end": 1,
+            "continued": true,
+            "lane": 2
+          },
+          {
+            "ref": "service-title",
+            "label": "IEEE TEVC · 受邀审稿",
+            "caption": "接受期刊审稿邀请",
+            "period": "2026.09.15",
+            "kind": "service",
+            "start": 1,
+            "end": 1,
+            "point": true,
+            "day": 15,
+            "lane": 3
+          }
+        ],
+        "chapter": "继续探索"
+      }
     ],
-    "undated": []
+    "undated": [
+      {
+        "ref": "masters",
+        "label": "华南理工 · 计算机科学硕士拟录取",
+        "caption": "预计 2027.09 入学",
+        "period": "拟录取日期未记载"
+      }
+    ],
+    "asOf": "2026-10-06",
+    "affiliation": {
+      "label": "MetaEvo 实验室",
+      "period": "2025.04.15 — 至今",
+      "description": "强化学习 / 黑盒优化 / 自动算法设计",
+      "ref": "research"
+    }
   },
   "service": "2026.09.15 接受 IEEE Transactions on Evolutionary Computation（TEVC）期刊审稿邀请。",
   "honors": [

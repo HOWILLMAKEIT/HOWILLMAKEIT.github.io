@@ -69,35 +69,35 @@ def main():
         "大一", "大二", "大三", "大四"
     ]
     for year in journey["years"]:
-        assert year["lanes"] >= 1
         for event in year["events"]:
             assert 1 <= event["start"] <= event["end"] <= 12, event
-            assert event["caption"].strip(), f"Missing concise event caption: {event['ref']}"
-            assert 1 <= event["lane"] <= year["lanes"], event
-            if event.get("endAtStart"):
-                assert event["start"] < event["end"], event
-            event_end = event["end"] if event.get("endAtStart") else event["end"] + 1
-            for other in year["events"]:
-                if other is event or other["lane"] != event["lane"]:
-                    continue
-                other_end = other["end"] if other.get("endAtStart") else other["end"] + 1
-                assert event_end <= other["start"] or other_end <= event["start"], (
-                    f"Overlapping events on one lane: {event['label']} / {other['label']}"
-                )
+            assert event["caption"].strip() and event["period"].strip(), event
+            if event.get("point"):
+                assert event["start"] == event["end"], event
+            for milestone in event.get("milestones", []):
+                assert 1 <= milestone["month"] <= 12
+                assert milestone["date"] and milestone["label"]
     sophomore, junior, senior = journey["years"][1:]
-    assert sophomore["events"][0]["start"] == 1, "Sophomore year should begin in September"
-    junior_events = {event["ref"]: event for event in junior["events"] if event["ref"] != "lcc"}
+    lab = sophomore["events"][0]
+    assert lab["point"] and lab["start"] == 8 and lab["period"] == "2025.04.15"
+    junior_events = {event["ref"]: event for event in junior["events"]}
     assert junior_events["ldo"]["start"] == 5, "LDO should begin in January"
-    assert junior_events["knight"]["lane"] == junior_events["csg"]["lane"]
     assert junior_events["knight"].get("endAtStart") and junior_events["knight"]["end"] == 11
     assert junior_events["csg"]["start"] == 11
+    assert junior_events["knight"]["lane"] == junior_events["csg"]["lane"]
+    assert junior_events["knight"]["shared"] and junior_events["csg"]["shared"]
+    assert [m["date"] for m in junior_events["lcc"]["milestones"]] == ["2026.03.20", "2026.07.17"]
+    assert junior_events["lcc"]["end"] == 5, "Milestones must not extend LCC's work period"
+    assert junior_events["ocr"]["continues"]
+    assert any(event.get("continued") for event in senior["events"] if event["ref"] == "ocr")
+    assert journey["undated"][0]["ref"] == "masters"
     internships = {entry["id"]: entry for entry in profile["tracks"][0]["entries"]}
     assert internships["knight"]["date"].endswith("2026.06.30")
     assert internships["csg"]["date"] == "2026.07 — 2026.08"
     assert any(event["ref"] == "ongoing-research" and event["start"] == 1 for event in senior["events"])
     reviewer = next(event for event in senior["events"] if event["ref"] == "service-title")
     assert reviewer["start"] == reviewer["end"] == 1 and reviewer["point"]
-    assert reviewer["caption"] == "2026.09.15"
+    assert reviewer["period"] == "2026.09.15"
     assert "2026.09.15" in profile["service"]
     events = [event for year in journey["years"] for event in year["events"]]
     events.extend(journey["undated"])
