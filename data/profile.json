@@ -313,15 +313,32 @@
           },
           {
             "ref": "dsh-context",
-            "label": "DSH 插件 · npm 累计下载突破 1,200",
-            "caption": "9 月 1 日首次发布 · 作者 / 维护者",
-            "period": "2026.10.05",
+            "label": "DSH 上下文管理插件",
+            "caption": "作者 / 维护者",
+            "period": "2026.09 — 至今",
             "kind": "open-source",
-            "start": 2,
+            "start": 1,
             "end": 2,
-            "point": true,
-            "day": 5,
-            "lane": 4
+            "lane": 4,
+            "steps": [
+              {
+                "label": "npm 首次发布",
+                "date": "2026.09.01",
+                "month": 1,
+                "day": 1
+              },
+              {
+                "label": "上架 DSH 插件市场",
+                "date": "2026.09",
+                "month": 1
+              },
+              {
+                "label": "npm 累计下载突破 1,200",
+                "date": "2026.10.05",
+                "month": 2,
+                "day": 5
+              }
+            ]
           },
           {
             "ref": "service-title",

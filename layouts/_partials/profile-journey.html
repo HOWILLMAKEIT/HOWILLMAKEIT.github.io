@@ -43,6 +43,17 @@
               <span class="journey-period">{{ .period }}</span>
               <span class="journey-event-caption">{{ if .shared }}{{ range split .caption " · " }}<span>{{ . }}</span>{{ end }}{{ else }}{{ .caption }}{{ end }}</span>
             </span>
+            {{ if .steps }}
+            <span class="journey-steps" role="list" aria-label="项目里程碑">
+              {{ range .steps }}
+              {{ $stepOffset := 0.5 }}{{ with .day }}{{ $stepOffset = div (float (sub . 1)) 31.0 }}{{ end }}
+              <span class="journey-step" role="listitem" style="{{ printf "--step-at:%.4f" (add (float (sub .month 1)) $stepOffset) | safeCSS }}">
+                <span class="journey-step-copy"><strong>{{ .label }}</strong><small>{{ .date }}</small></span>
+                <i aria-hidden="true"></i>
+              </span>
+              {{ end }}
+            </span>
+            {{ else }}
             <span class="journey-rail">
               <span class="journey-bar" aria-hidden="true">{{ if not .point }}
                 <svg viewBox="0 0 100 18" preserveAspectRatio="none">
@@ -55,6 +66,7 @@
               <span class="journey-milestone" style="{{ printf "--at:%.4f" (add (float (sub .month 1)) (div (float (sub .day 1)) 31.0)) | safeCSS }}"><span><strong>{{ .label }}</strong><small>{{ .date }}</small></span><i aria-hidden="true"></i></span>
               {{ end }}
             </span>
+            {{ end }}
           </a>
         </li>
         {{ end }}
