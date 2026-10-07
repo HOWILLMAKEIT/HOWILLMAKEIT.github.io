@@ -46,12 +46,12 @@
             {{ if .steps }}
             <span class="journey-steps" role="list" aria-label="项目里程碑">
               {{ range .steps }}
-              {{ $stepOffset := 0.5 }}{{ with .day }}{{ $stepOffset = div (float (sub . 1)) 31.0 }}{{ end }}
-              <span class="journey-step" role="listitem" style="{{ printf "--step-at:%.4f" (add (float (sub .month 1)) $stepOffset) | safeCSS }}">
+              <span class="journey-step" role="listitem">
                 <span class="journey-step-copy"><strong>{{ .label }}</strong><small>{{ .date }}</small></span>
-                <i aria-hidden="true"></i>
               </span>
               {{ end }}
+              <svg class="journey-steps-brace" viewBox="0 0 100 18" preserveAspectRatio="none" aria-hidden="true"><path d="M1 16 Q1 8 8 8 H42 Q50 8 50 1 Q50 8 58 8 H92 Q99 8 99 16"/></svg>
+              <span class="journey-step-points" aria-hidden="true"><i></i><i></i><i></i></span>
             </span>
             {{ else }}
             <span class="journey-rail">
