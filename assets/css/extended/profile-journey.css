@@ -6,9 +6,7 @@
   --journey-open-source: #a63e65;
   --journey-education: #74618e;
   --journey-service: #637080;
-  --journey-release: #2563a6;
-  --journey-listing: #7952a6;
-  --journey-downloads: #a55b13;
+  --journey-dsh: #16756f;
   --journey-rule: color-mix(in srgb, var(--about-ink) 12%, transparent);
   position: relative;
   left: 50%;
@@ -29,9 +27,7 @@
   --journey-open-source: #efa3bf;
   --journey-education: #c7b0e4;
   --journey-service: #bac9d8;
-  --journey-release: #86baf1;
-  --journey-listing: #c5a0ed;
-  --journey-downloads: #efb366;
+  --journey-dsh: #82ccc3;
 }
 .about-home .journey-header { display:flex; align-items:center; justify-content:space-between; gap:24px; }
 .about-home .journey-header h2 { margin:12px 0; font-family:"Songti SC","Noto Serif CJK SC",serif; font-size:clamp(1.5rem,2.6vw,2rem); letter-spacing:-.035em; line-height:1.5; }
@@ -94,19 +90,16 @@
 .about-home .journey-milestone strong { display:block; font-size:.73rem; font-weight:600; }
 .about-home .journey-milestone small { display:block; white-space:nowrap; margin-top:4px; font:.59rem/1.5 ui-monospace,monospace; color:var(--about-muted); }
 .about-home .journey-milestone i { width:10px; height:10px; border-radius:50%; background:var(--about-paper); border:2px solid var(--event-color); }
-.about-home .journey-year-chart { padding-inline:40px; }
-.about-home .journey-event:has(.journey-steps) { --event-color:var(--about-ink); }
+.about-home .journey-year-chart { padding-inline:0; }
+.about-home .journey-event:has(.journey-steps) { --event-color:var(--journey-dsh); }
 .about-home .journey-event:has(.journey-steps) > .journey-event-copy { padding-bottom:0; }
 .about-home .journey-event:has(.journey-steps) .journey-period,
 .about-home .journey-event:has(.journey-steps) .journey-event-caption { display:inline-block; vertical-align:baseline; }
 .about-home .journey-event:has(.journey-steps) .journey-event-caption { margin-left:12px; }
 .about-home .journey-steps { display:block; position:relative; height:140px; margin:0; color:var(--event-color); }
 .about-home .journey-step { position:absolute; inset:0; pointer-events:none; }
-.about-home .journey-step:nth-child(1) { color:var(--journey-release); }
-.about-home .journey-step:nth-child(2) { color:var(--journey-listing); }
-.about-home .journey-step:nth-child(3) { color:var(--journey-downloads); }
-.about-home .journey-step-copy { position:absolute; left:calc(var(--step-at) * 100% / 12); bottom:86px; width:96px; transform:translateX(-50%); text-align:center; }
-.about-home .journey-step:first-child .journey-step-copy { width:64px; }
+.about-home .journey-step-copy { position:absolute; left:calc(var(--step-at) * 100% / 12); bottom:86px; width:84px; transform:translateX(-50%); text-align:center; }
+.about-home .journey-step:first-child .journey-step-copy { width:60px; }
 .about-home .journey-step:last-child .journey-step-copy { width:calc(100% / 12 + 4px); }
 .about-home .journey-step--below .journey-step-copy { top:80px; bottom:auto; }
 .about-home .journey-step-copy::after { content:""; position:absolute; left:50%; top:calc(100% + 3px); height:7px; border-left:1px dashed currentColor; opacity:.55; }
@@ -151,9 +144,9 @@
   .about-home .journey-event-copy strong { font-size:.82rem; }
   .about-home .journey-event-caption { font-size:.7rem; }
   .about-home .journey-period { font-size:.65rem; }
-  .about-home .journey-years { overflow-x:auto; padding-bottom:12px; }
+  .about-home .journey-years { overflow-x:auto; padding:0 32px 12px; margin-inline:-32px; }
   .about-home .journey-year { min-width:896px; }
-  .about-home .journey-year-chart { padding-inline:48px; }
+  .about-home .journey-year-chart { padding-inline:0; }
   .about-home .journey-year-chart .journey-event { scroll-margin-inline:48px; }
   .about-home .journey-step-copy strong { font-size:.68rem; }
   .about-home .journey-step-copy small { font-size:.56rem; white-space:nowrap; }
