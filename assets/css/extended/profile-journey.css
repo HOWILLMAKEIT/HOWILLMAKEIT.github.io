@@ -6,6 +6,9 @@
   --journey-open-source: #a63e65;
   --journey-education: #74618e;
   --journey-service: #637080;
+  --journey-release: #2563a6;
+  --journey-listing: #7952a6;
+  --journey-downloads: #a55b13;
   --journey-rule: color-mix(in srgb, var(--about-ink) 12%, transparent);
   position: relative;
   left: 50%;
@@ -26,6 +29,9 @@
   --journey-open-source: #efa3bf;
   --journey-education: #c7b0e4;
   --journey-service: #bac9d8;
+  --journey-release: #86baf1;
+  --journey-listing: #c5a0ed;
+  --journey-downloads: #efb366;
 }
 .about-home .journey-header { display:flex; align-items:center; justify-content:space-between; gap:24px; }
 .about-home .journey-header h2 { margin:12px 0; font-family:"Songti SC","Noto Serif CJK SC",serif; font-size:clamp(1.5rem,2.6vw,2rem); letter-spacing:-.035em; line-height:1.5; }
@@ -89,12 +95,16 @@
 .about-home .journey-milestone small { display:block; white-space:nowrap; margin-top:4px; font:.59rem/1.5 ui-monospace,monospace; color:var(--about-muted); }
 .about-home .journey-milestone i { width:10px; height:10px; border-radius:50%; background:var(--about-paper); border:2px solid var(--event-color); }
 .about-home .journey-year-chart { padding-inline:40px; }
+.about-home .journey-event:has(.journey-steps) { --event-color:var(--about-ink); }
 .about-home .journey-event:has(.journey-steps) > .journey-event-copy { padding-bottom:0; }
 .about-home .journey-event:has(.journey-steps) .journey-period,
 .about-home .journey-event:has(.journey-steps) .journey-event-caption { display:inline-block; vertical-align:baseline; }
 .about-home .journey-event:has(.journey-steps) .journey-event-caption { margin-left:12px; }
 .about-home .journey-steps { display:block; position:relative; height:140px; margin:0; color:var(--event-color); }
 .about-home .journey-step { position:absolute; inset:0; pointer-events:none; }
+.about-home .journey-step:nth-child(1) { color:var(--journey-release); }
+.about-home .journey-step:nth-child(2) { color:var(--journey-listing); }
+.about-home .journey-step:nth-child(3) { color:var(--journey-downloads); }
 .about-home .journey-step-copy { position:absolute; left:calc(var(--step-at) * 100% / 12); bottom:86px; width:96px; transform:translateX(-50%); text-align:center; }
 .about-home .journey-step:first-child .journey-step-copy { width:64px; }
 .about-home .journey-step:last-child .journey-step-copy { width:calc(100% / 12 + 4px); }
