@@ -88,16 +88,22 @@
 .about-home .journey-milestone strong { display:block; font-size:.73rem; font-weight:600; }
 .about-home .journey-milestone small { display:block; white-space:nowrap; margin-top:4px; font:.59rem/1.5 ui-monospace,monospace; color:var(--about-muted); }
 .about-home .journey-milestone i { width:10px; height:10px; border-radius:50%; background:var(--about-paper); border:2px solid var(--event-color); }
-.about-home .journey-year-chart:has(.journey-steps) { padding-inline:40px; }
-.about-home .journey-steps { display:block; position:relative; height:176px; margin:8px 0 0; color:var(--event-color); }
+.about-home .journey-year-chart { padding-inline:40px; }
+.about-home .journey-event:has(.journey-steps) > .journey-event-copy { padding-bottom:0; }
+.about-home .journey-event:has(.journey-steps) .journey-period,
+.about-home .journey-event:has(.journey-steps) .journey-event-caption { display:inline-block; vertical-align:baseline; }
+.about-home .journey-event:has(.journey-steps) .journey-event-caption { margin-left:12px; }
+.about-home .journey-steps { display:block; position:relative; height:140px; margin:0; color:var(--event-color); }
 .about-home .journey-step { position:absolute; inset:0; pointer-events:none; }
-.about-home .journey-step-copy { position:absolute; left:calc(var(--step-at) * 100% / 12); bottom:104px; width:96px; transform:translateX(-50%); text-align:center; }
+.about-home .journey-step-copy { position:absolute; left:calc(var(--step-at) * 100% / 12); bottom:86px; width:96px; transform:translateX(-50%); text-align:center; }
 .about-home .journey-step:first-child .journey-step-copy { width:64px; }
 .about-home .journey-step:last-child .journey-step-copy { width:calc(100% / 12 + 4px); }
-.about-home .journey-step--below .journey-step-copy { top:102px; bottom:auto; }
+.about-home .journey-step--below .journey-step-copy { top:80px; bottom:auto; }
+.about-home .journey-step-copy::after { content:""; position:absolute; left:50%; top:calc(100% + 3px); height:7px; border-left:1px dashed currentColor; opacity:.55; }
+.about-home .journey-step--below .journey-step-copy::after { top:auto; bottom:calc(100% + 3px); }
 .about-home .journey-step-copy strong { display:block; font-size:.74rem; line-height:1.5; font-weight:600; text-wrap:balance; }
 .about-home .journey-step-copy small { display:block; margin-top:4px; font:.61rem/1.5 ui-monospace,monospace; color:var(--about-muted); white-space:nowrap; }
-.about-home .journey-step-point { position:absolute; left:calc(var(--step-at) * 100% / 12); top:84px; transform:translateX(-50%); width:7px; height:7px; border:1.5px solid currentColor; border-radius:50%; background:var(--about-paper); }
+.about-home .journey-step-point { position:absolute; left:calc(var(--step-at) * 100% / 12); top:64px; transform:translateX(-50%); width:7px; height:7px; border:1.5px solid currentColor; border-radius:50%; background:var(--about-paper); }
 .about-home .journey-next { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 16px; padding:20px 0; margin-top:18px; border-bottom:1px solid var(--journey-rule); }
 .about-home .journey-next .section-kicker { font-size:.58rem; }
 .about-home .journey-next strong { font-size:.75rem; }
@@ -135,10 +141,10 @@
   .about-home .journey-event-copy strong { font-size:.82rem; }
   .about-home .journey-event-caption { font-size:.7rem; }
   .about-home .journey-period { font-size:.65rem; }
-  .about-home .journey-year-chart:has(.journey-steps) { overflow-x:auto; padding:0 48px 12px; margin-inline:-5px; }
-  .about-home .journey-year-chart:has(.journey-steps) .journey-event { scroll-margin-inline:48px; }
-  .about-home .journey-year-chart:has(.journey-steps) > .journey-events,
-  .about-home .journey-year-chart:has(.journey-steps) > .journey-calendar { min-width:800px; }
+  .about-home .journey-years { overflow-x:auto; padding-bottom:12px; }
+  .about-home .journey-year { min-width:896px; }
+  .about-home .journey-year-chart { padding-inline:48px; }
+  .about-home .journey-year-chart .journey-event { scroll-margin-inline:48px; }
   .about-home .journey-step-copy strong { font-size:.68rem; }
   .about-home .journey-step-copy small { font-size:.56rem; white-space:nowrap; }
   .about-home .journey-row--milestones .journey-rail { margin-top:52px; }
