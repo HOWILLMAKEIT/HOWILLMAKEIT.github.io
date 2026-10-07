@@ -96,6 +96,10 @@
               "url": "https://github.com/HOWILLMAKEIT/dsh-model-context-catalog"
             },
             {
+              "label": "市场收录 PR",
+              "url": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/4435"
+            },
+            {
               "label": "下载统计",
               "url": "https://api.npmjs.org/downloads/point/2026-09-01:2026-10-05/dsh-model-context-catalog"
             },
@@ -329,8 +333,9 @@
               },
               {
                 "label": "上架 DSH 插件市场",
-                "date": "2026.09",
-                "month": 1
+                "date": "2026.09.07",
+                "month": 1,
+                "day": 7
               },
               {
                 "label": "npm 累计下载突破 1,200",

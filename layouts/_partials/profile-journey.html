@@ -45,13 +45,20 @@
             </span>
             {{ if .steps }}
             <span class="journey-steps" role="list" aria-label="项目里程碑">
-              {{ range .steps }}
+              {{ range $index, $step := .steps }}
               <span class="journey-step" role="listitem">
+                <span class="journey-step-number">{{ add $index 1 }}</span>
                 <span class="journey-step-copy"><strong>{{ .label }}</strong><small>{{ .date }}</small></span>
               </span>
               {{ end }}
-              <svg class="journey-steps-brace" viewBox="0 0 100 18" preserveAspectRatio="none" aria-hidden="true"><path d="M1 16 Q1 8 8 8 H42 Q50 8 50 1 Q50 8 58 8 H92 Q99 8 99 16"/></svg>
-              <span class="journey-step-points" aria-hidden="true"><i></i><i></i><i></i></span>
+            </span>
+            <span class="journey-step-points" aria-hidden="true">
+              {{ range $index, $step := .steps }}
+              {{ $date := time.AsTime (replace .date "." "-") }}
+              {{ $days := ($date.AddDate 0 1 0).AddDate 0 0 (sub 0 $date.Day) }}
+              {{ $at := add (float (sub .month 1)) (div (float (sub .day 1)) (float $days.Day)) }}
+              <span class="journey-step-point" style="{{ printf "--step-at:%.6f" $at | safeCSS }}"><small>{{ add $index 1 }}</small><i></i></span>
+              {{ end }}
             </span>
             {{ else }}
             <span class="journey-rail">
