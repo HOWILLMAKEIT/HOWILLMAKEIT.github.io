@@ -71,6 +71,41 @@
       "id": "open-source", "title": "开源贡献", "eyebrow": "03 / OPEN SOURCE", "description": "把工程实践中的改进，贡献回开源社区。",
       "entries": [
         {
+          "id": "dsh-context",
+          "date": "2026.09 — 至今",
+          "title": "dsh-model-context-catalog · DSH 上下文管理插件",
+          "role": "作者 / 维护者",
+          "venue": "npm",
+          "status": "已发布",
+          "summary": "为 DeepSeek Harness 开发上下文窗口管理插件，按模型路由维护准确配置，解决长会话被误判为上下文溢出、会话压缩失败的问题。",
+          "metricsLabel": "npm 下载量",
+          "metrics": [
+            {
+              "value": "1,155 次",
+              "label": "npm 累计下载"
+            }
+          ],
+          "result": "npm 官方统计：2026.09.01 首次发布至 2026.10.04。",
+          "links": [
+            {
+              "label": "npm 包",
+              "url": "https://www.npmjs.com/package/dsh-model-context-catalog"
+            },
+            {
+              "label": "GitHub",
+              "url": "https://github.com/HOWILLMAKEIT/dsh-model-context-catalog"
+            },
+            {
+              "label": "下载统计",
+              "url": "https://api.npmjs.org/downloads/point/2026-09-01:2026-10-04/dsh-model-context-catalog"
+            },
+            {
+              "label": "开发记录",
+              "url": "/posts/dsh-model-context-catalog/"
+            }
+          ]
+        },
+        {
           "id": "ocr", "date": "2026.08 — 2026.09", "title": "Alibaba Open Code Review", "role": "贡献者", "venue": "38.7k Stars", "status": "4 个 PR 全部合并",
           "summary": "为仓库级代码审查工具贡献近 1,000 行代码，位列 GitHub 贡献者列表第 25 / 181 位。",
           "details": ["修复审查任务中断后结果未保存、无法续跑及退出卡死等问题，完善任务取消与 MCP 子进程回收机制，补充异常场景回归测试。"],
@@ -277,6 +312,18 @@
             "lane": 3
           },
           {
+            "ref": "dsh-context",
+            "label": "DSH 上下文管理插件 · npm 发布",
+            "caption": "作者 / 维护者",
+            "period": "2026.09.01",
+            "kind": "open-source",
+            "start": 1,
+            "end": 1,
+            "point": true,
+            "day": 1,
+            "lane": 4
+          },
+          {
             "ref": "service-title",
             "label": "IEEE TEVC · 受邀审稿",
             "caption": "接受期刊审稿邀请",
@@ -286,7 +333,7 @@
             "end": 1,
             "point": true,
             "day": 15,
-            "lane": 4
+            "lane": 5
           }
         ],
         "chapter": "继续探索"

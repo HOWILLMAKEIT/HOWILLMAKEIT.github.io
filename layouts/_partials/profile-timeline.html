@@ -18,8 +18,9 @@
         {{- with .tags }}
         <ul class="profile-entry-tags" aria-label="技术关键词">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
         {{- end }}
+        {{- $metricsLabel := .metricsLabel | default "效果提升" }}
         {{- with .metrics }}
-        <ul class="profile-metrics" aria-label="效果提升">
+        <ul class="profile-metrics" aria-label="{{ $metricsLabel }}">
           {{- range . }}<li><strong>{{ .value }}</strong><span>{{ .label }}</span></li>{{- end }}
         </ul>
         {{- end }}
