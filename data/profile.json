@@ -255,8 +255,8 @@
           },
           {
             "ref": "ldo",
-            "label": "LDO · 一轮审稿",
-            "caption": "收到一轮审稿结果",
+            "label": "LDO · 收到一轮审稿结果",
+            "caption": "IEEE TEVC · 论文修改中",
             "period": "2026.09.04",
             "kind": "research",
             "start": 1,
