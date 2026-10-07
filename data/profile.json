@@ -46,9 +46,9 @@
       "id": "research", "title": "科研", "eyebrow": "02 / RESEARCH", "description": "用强化学习学习决策，用大模型探索算法设计。",
       "entries": [
         {
-          "id": "ongoing-research", "date": "进行中", "title": "在研项目 · 智能优化", "role": "共同第一作者", "venue": "", "status": "在研，尚未投稿",
-          "summary": "围绕智能优化开展研究，相关工作仍在推进中。",
-          "tags": ["智能优化"]
+          "id": "ongoing-research", "date": "进行中", "title": "meta^2", "role": "共同第一作者", "venue": "", "status": "在研，尚未投稿",
+          "summary": "开展大模型、强化学习与算法设计相关研究。",
+          "tags": ["大模型", "强化学习", "算法设计"]
         },
         {
           "id": "ldo", "date": "修改中", "title": "Learning to Decompose during Optimization: Efficient Cooperative Coevolution for Large-Scale Global Optimization", "role": "共同第一作者", "venue": "IEEE TEVC · 中科院一区 TOP", "status": "一轮审稿后修改中",
@@ -243,7 +243,7 @@
         "events": [
           {
             "ref": "ongoing-research",
-            "label": "在研项目 · 智能优化",
+            "label": "meta^2",
             "caption": "共同第一作者 · 在研，尚未投稿",
             "period": "2026.09 — 至今",
             "kind": "research",
