@@ -81,11 +81,11 @@
           "metricsLabel": "npm 下载量",
           "metrics": [
             {
-              "value": "1,155 次",
+              "value": "1,209 次",
               "label": "npm 累计下载"
             }
           ],
-          "result": "npm 官方统计：2026.09.01 首次发布至 2026.10.04。",
+          "result": "2026.10.05 累计下载突破 1,200 次；统计自 2026.09.01 首次发布起。",
           "links": [
             {
               "label": "npm 包",
@@ -97,7 +97,7 @@
             },
             {
               "label": "下载统计",
-              "url": "https://api.npmjs.org/downloads/point/2026-09-01:2026-10-04/dsh-model-context-catalog"
+              "url": "https://api.npmjs.org/downloads/point/2026-09-01:2026-10-05/dsh-model-context-catalog"
             },
             {
               "label": "开发记录",
@@ -313,14 +313,14 @@
           },
           {
             "ref": "dsh-context",
-            "label": "DSH 上下文管理插件 · npm 发布",
-            "caption": "作者 / 维护者",
-            "period": "2026.09.01",
+            "label": "DSH 插件 · npm 累计下载突破 1,200",
+            "caption": "9 月 1 日首次发布 · 作者 / 维护者",
+            "period": "2026.10.05",
             "kind": "open-source",
-            "start": 1,
-            "end": 1,
+            "start": 2,
+            "end": 2,
             "point": true,
-            "day": 1,
+            "day": 5,
             "lane": 4
           },
           {
