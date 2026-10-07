@@ -44,7 +44,13 @@
               <span class="journey-event-caption">{{ if .shared }}{{ range split .caption " · " }}<span>{{ . }}</span>{{ end }}{{ else }}{{ .caption }}{{ end }}</span>
             </span>
             <span class="journey-rail">
-              <span class="journey-bar" aria-hidden="true">{{ if not .point }}<svg viewBox="0 0 100 18" preserveAspectRatio="none"><path d="M1 16 Q1 8 8 8 H42 Q50 8 50 1 Q50 8 58 8 H92 Q99 8 99 16"/></svg>{{ end }}</span>
+              <span class="journey-bar" aria-hidden="true">{{ if not .point }}
+                <svg viewBox="0 0 100 18" preserveAspectRatio="none">
+                  {{ if .continued }}<path class="journey-continuation" d="M1 8 H20"/>{{ end }}
+                  <path d="{{ if .continued }}M20 8{{ else }}M1 16 Q1 8 8 8{{ end }} H42 Q50 8 50 1 Q50 8 58 8 {{ if or .ongoing .continues }}H80{{ else }}H92 Q99 8 99 16{{ end }}"/>
+                  {{ if or .ongoing .continues }}<path class="journey-continuation" d="M80 8 H99"/>{{ end }}
+                </svg>
+              {{ end }}</span>
               {{ range .milestones }}
               <span class="journey-milestone" style="{{ printf "--at:%.4f" (add (float (sub .month 1)) (div (float (sub .day 1)) 31.0)) | safeCSS }}"><span><strong>{{ .label }}</strong><small>{{ .date }}</small></span><i aria-hidden="true"></i></span>
               {{ end }}
