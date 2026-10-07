@@ -53,6 +53,7 @@
         {
           "id": "ldo", "date": "修改中", "title": "Learning to Decompose during Optimization: Efficient Cooperative Coevolution for Large-Scale Global Optimization", "role": "共同第一作者", "venue": "IEEE TEVC · 中科院一区 TOP", "status": "一轮审稿后修改中",
           "summary": "基于 PPO 在优化过程中动态调整变量分组、资源分配与优化策略；结合低成本局部探测和边优化边分解，在减少函数评估开销的同时，提高分组准确率与最终优化效果。",
+          "details": ["2026.09.04 收到一轮审稿结果。"],
           "tags": ["PPO", "序贯决策", "大规模黑盒优化"]
         },
         {
@@ -253,6 +254,18 @@
             "lane": 1
           },
           {
+            "ref": "ldo",
+            "label": "LDO · 一轮审稿",
+            "caption": "收到一轮审稿结果",
+            "period": "2026.09.04",
+            "kind": "research",
+            "start": 1,
+            "end": 1,
+            "point": true,
+            "day": 4,
+            "lane": 2
+          },
+          {
             "ref": "ocr",
             "label": "Open Code Review",
             "caption": "4 个 PR 全部合并 · 约 1,000 行",
@@ -261,7 +274,7 @@
             "start": 1,
             "end": 1,
             "continued": true,
-            "lane": 2
+            "lane": 3
           },
           {
             "ref": "service-title",
@@ -273,7 +286,7 @@
             "end": 1,
             "point": true,
             "day": 15,
-            "lane": 3
+            "lane": 4
           }
         ],
         "chapter": "继续探索"
