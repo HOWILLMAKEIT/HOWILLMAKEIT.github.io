@@ -326,7 +326,7 @@
             "lane": 4,
             "steps": [
               {
-                "label": "npm 首次发布",
+                "label": "npm 发布",
                 "date": "2026.09.01",
                 "month": 1,
                 "day": 1
